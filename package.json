@@ -17,7 +17,6 @@
   "bugs": {
     "url": "https://github.com/anahuynh27/FitnessTracker_FrontEnd/issues"
   },
-  "homepage": "https://github.com/anahuynh27/FitnessTracker_FrontEnd#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
