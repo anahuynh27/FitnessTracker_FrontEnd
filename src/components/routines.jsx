@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const routines = () => {
-  return (
-    <div>routines</div>
-  )
-}
+const Routines = () => {
+  return <div>Routines</div>;
+};
 
-export default routines
+export default Routines;
