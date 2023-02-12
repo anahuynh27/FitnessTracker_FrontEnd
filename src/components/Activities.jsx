@@ -19,14 +19,35 @@ const Activities = () => {
 
   return (
     <div>
-      {activities.map((a) => {
-        return (
-          <div key={a.id}>
-            <span>NAME: {a.name}</span> {'\n'}
-            <span>DESCRIPTION: {a.description}</span>
-          </div>
-        );
-      })}
+      <div className='overflow-x-auto'>
+        <table className='min-w-full divide-y-2 divide-gray-200 text-sm'>
+          <thead>
+            <tr>
+              <th className='whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900'>
+                Name
+              </th>
+              <th className='whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900'>
+                Description
+              </th>
+            </tr>
+          </thead>
+
+          <tbody className='divide-y divide-gray-200'>
+            {activities.map((a) => {
+              return (
+                <tr>
+                  <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                    {a.name}
+                  </td>
+                  <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
+                    {a.description}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
