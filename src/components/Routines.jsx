@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchAllPublicRoutines, fetchCreateRoutine } from '../api/api';
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
-  const [name, setName] = useState("");
-  const [goal, setGoal] = useState("");
+  const [name, setName] = useState('');
+  const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(null);
-  const [activites, setActivities] = useState({})
+  const [activites, setActivities] = useState({});
 
   useEffect(() => {
     allRoutines();
@@ -17,7 +17,7 @@ const Routines = () => {
       const routines = await fetchAllPublicRoutines();
       setRoutines(routines);
     } catch (error) {
-      console.error("error all Routines function", error);
+      console.error('error all Routines function', error);
     }
   };
 
@@ -33,10 +33,10 @@ const Routines = () => {
             <span>GOAL: {r.goal}</span>
             <span>ACTIVITIES: {r.activites}</span>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 };
 
 export default Routines;

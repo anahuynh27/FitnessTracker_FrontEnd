@@ -1,22 +1,45 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Navbar, Activities } from './components';
+import {
+  Navbar,
+  Activities,
+  Routines,
+  MyRoutines,
+  Homepage,
+  Register,
+  Login,
+} from './components';
+import './index.css';
 
 const App = () => {
   return (
-    <div>
-      <header>
+    <div className='flex flex-col min-h-screen'>
+      <header className='p-4 bg-white'>
         <Navbar />
       </header>
       {/* body  */}
-      <div>
-        <main>
+      <div className='flex flex-row flex-1'>
+        <main className='flex-1 p-4'>
           <Routes>
+            <Route path='/home' element={<Homepage />} />
             <Route path='/activities' element={<Activities />} />
+            <Route path='/routines' element={<Routines />} />
+            <Route path='/myroutines' element={<MyRoutines />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
         </main>
       </div>
+      {/* footer */}
+      <footer className='p-4 text-center bg-white'>
+        <div>
+          <span className='font-serif'>fitness trackr 2023</span>
+        </div>
+        <div>
+          <span>ana tran & vincent palomo</span>
+        </div>
+      </footer>
     </div>
   );
 };
