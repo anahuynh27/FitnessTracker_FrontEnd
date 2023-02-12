@@ -20,7 +20,7 @@ const Activities = () => {
   return (
     <div>
       <div className='overflow-x-auto'>
-        <table className='min-w-full divide-y-2 divide-gray-200 text-sm'>
+        <table className='min-w-full divide-y-2 divide-gray-200 text-sm font-serif'>
           <thead>
             <tr>
               <th className='whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900'>
