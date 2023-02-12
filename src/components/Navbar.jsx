@@ -15,14 +15,19 @@ const Navbar = () => {
             home
           </button>
         </Link>
-        <Link to='/activities' className='active:text-pink-500'>
-          <button className='m-2 font-serif text-xl hover:text-pink-500 focus:text-pink-500'>
-            activities
-          </button>
-        </Link>
         <Link to='/routines' className=' active:text-pink-500'>
           <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
             routines
+          </button>
+        </Link>
+        <Link to='/myroutines' className=' active:text-pink-500'>
+          <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
+            my routines
+          </button>
+        </Link>
+        <Link to='/activities' className='active:text-pink-500'>
+          <button className='m-2 font-serif text-xl hover:text-pink-500 focus:text-pink-500'>
+            activities
           </button>
         </Link>
       </div>
