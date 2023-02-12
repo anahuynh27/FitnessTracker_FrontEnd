@@ -5,6 +5,7 @@ import {
   Navbar,
   Activities,
   Routines,
+  MyRoutines,
   Homepage,
   Register,
   Login,
@@ -24,6 +25,7 @@ const App = () => {
             <Route path='/home' element={<Homepage />} />
             <Route path='/activities' element={<Activities />} />
             <Route path='/routines' element={<Routines />} />
+            <Route path='/myroutines' element={<MyRoutines />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>

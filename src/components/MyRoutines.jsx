@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Users = () => {
-  return <div>Users</div>;
+const MyRoutines = () => {
+  return <div>MyRoutines</div>;
 };
 
-export default Users;
+export default MyRoutines;
