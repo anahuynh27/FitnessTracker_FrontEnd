@@ -1,7 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Navbar, Activities } from './components';
+import { Navbar, Activities, Routines } from './components';
+import './index.css';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <main>
           <Routes>
             <Route path='/activities' element={<Activities />} />
+            <Route path='/routines' element={<Routines />} />
           </Routes>
         </main>
       </div>
