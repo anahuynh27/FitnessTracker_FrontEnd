@@ -5,6 +5,7 @@ const Login = () => {
   const [user, setUser] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     login();
@@ -17,8 +18,8 @@ const Login = () => {
 
     try {
       const login = await fetchLogin(username, password);
-      if (!login.success) {
-        alert('login failed');
+      if (login) {
+        setMessage(login.message);
       }
     } catch (error) {
       console.error('error login fn', error);
@@ -41,6 +42,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <span>
+          <button type='submit'>login</button>
+        </span>
+        <span>{message}</span>
       </form>
     </div>
   );
