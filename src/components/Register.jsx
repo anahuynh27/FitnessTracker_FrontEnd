@@ -40,7 +40,8 @@ const Register = () => {
           <input 
             type='text'
             name="username"
-            value={username}
+          value={username}
+          placeholder="username"
             onSubmit={(event) => setUsername(event.target.value)}
             required
           />
@@ -48,7 +49,8 @@ const Register = () => {
           <input
             type="password"
             name="password"
-            value={password}
+          value={password}
+          placeholder="password"
             onChange={(event) => setPassword(event.target.value)}
             required
           />
