@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useHistory} from 'react';
 import { fetchRegister } from '../api/api';
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,13 +15,22 @@ const Register = () => {
     try {
       const register = await fetchRegister(username, password);
       
-      setToken(register.data.token);
-      localStorage.setItem('token', register.data.token);
-      history.pushState('/account')
+      if (!register.success) {
+        setMessage(register.error.message)
+      }
+
+      // setToken(register.data.token);
+      // localStorage.setItem('token', register.data.token);
+      history.pushState('/account');
+      console.log("passed through handleSubmit");
     } catch (error) {
       console.error("Error Registering, please try again", error);
     }
   };
+
+  console.log("username", username);
+  console.log("password", password);
+  // console.log("token", token);
 
   return (
     <div>
@@ -30,11 +40,11 @@ const Register = () => {
           <input 
             type='text'
             name="username"
-            defaultValue={username}
+            value={username}
             onSubmit={(event) => setUsername(event.target.value)}
             required
           />
-          <labal>Create Password: </labal>
+          <label>Create Password: </label>
           <input
             type="password"
             name="password"
