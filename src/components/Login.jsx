@@ -26,10 +26,11 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className='mx-3'>
       <form onSubmit={login}>
         <label htmlFor='username'>username:</label>
         <input
+          className='mx-1 mt-1 border-2 rounded-md shadow-sm border-rose-500 sm:text-sm'
           type='text'
           name='username'
           value={username}
@@ -37,13 +38,19 @@ const Login = () => {
         />
         <label htmlFor='password'>password:</label>
         <input
+          className='mx-1 mt-1 border-2 rounded-md shadow-sm border-rose-500 sm:text-sm'
           type='password'
           name='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <span>
-          <button type='submit'>login</button>
+          <button
+            className='px-4 py-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
+            type='submit'
+          >
+            login
+          </button>
         </span>
         <span>{message}</span>
       </form>
