@@ -37,7 +37,9 @@ const App = () => {
           <span className='font-serif'>fitness trackr 2023</span>
         </div>
         <div>
-          <span>ana tran & vincent palomo</span>
+          <span className='text-slate-500'>
+            fullstack academy project by ana tran & vincent palomo
+          </span>
         </div>
       </footer>
     </div>
