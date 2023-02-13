@@ -33,7 +33,7 @@ const Homepage = () => {
           <div className='grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2'>
             <img
               alt='Student'
-              src='https://images.pexels.com/photos/4761779/pexels-photo-4761779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+              src='https://images.pexels.com/photos/4720754/pexels-photo-4720754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               className='object-cover w-full h-40 sm:h-56 md:h-full'
             />
 
