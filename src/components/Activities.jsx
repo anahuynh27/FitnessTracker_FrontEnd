@@ -20,13 +20,13 @@ const Activities = () => {
   return (
     <div>
       <div className='overflow-x-auto'>
-        <table className='min-w-full divide-y-2 divide-gray-200 text-sm font-serif'>
+        <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
             <tr>
-              <th className='whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900'>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Name
               </th>
-              <th className='whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900'>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Description
               </th>
             </tr>
@@ -35,11 +35,11 @@ const Activities = () => {
           <tbody className='divide-y divide-gray-200'>
             {activities.map((a) => {
               return (
-                <tr>
-                  <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+                <tr key={a.id}>
+                  <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
                     {a.name}
                   </td>
-                  <td className='whitespace-nowrap px-4 py-2 text-gray-700'>
+                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {a.description}
                   </td>
                 </tr>
