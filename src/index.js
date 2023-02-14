@@ -40,7 +40,10 @@ const App = () => {
       <div className='flex flex-row flex-1'>
         <main className='flex-1 p-4'>
           <Routes>
-            <Route path='/home' element={<Homepage />} />
+            <Route
+              path='/home'
+              element={<Homepage isLoggedIn={isLoggedIn} />}
+            />
             <Route path='/activities' element={<Activities />} />
             <Route path='/routines' element={<Routines />} />
             <Route

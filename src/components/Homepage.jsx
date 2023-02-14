@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Homepage = () => {
+const Homepage = ({ isLoggedIn }) => {
   return (
     <section>
       <div className='px-4 py-8 mx-auto max-w-screen-2xl sm:px-6 lg:px-8'>
@@ -18,15 +18,25 @@ const Homepage = () => {
                 ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
                 quisque ut interdum tincidunt duis.
               </p>
-
-              <div className='mt-4 md:mt-8'>
-                <Link
-                  to='/login'
-                  className='inline-block px-12 py-3 text-sm font-medium text-blue-500 transition bg-white border border-white rounded hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400'
-                >
-                  Get Started Today
-                </Link>
-              </div>
+              {isLoggedIn ? (
+                <div className='mt-4 md:mt-8'>
+                  <Link
+                    to='/myroutines'
+                    className='inline-block px-12 py-3 text-sm font-medium text-blue-500 transition bg-white border border-white rounded hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400'
+                  >
+                    Start a Routine
+                  </Link>
+                </div>
+              ) : (
+                <div className='mt-4 md:mt-8'>
+                  <Link
+                    to='/login'
+                    className='inline-block px-12 py-3 text-sm font-medium text-blue-500 transition bg-white border border-white rounded hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400'
+                  >
+                    Get Started Today
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 

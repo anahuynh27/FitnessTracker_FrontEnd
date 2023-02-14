@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../api/api';
 
-const Login = ({setToken, setIsLoggedIn}) => {
+const Login = ({ setToken, setIsLoggedIn }) => {
   const [user, setUser] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +27,7 @@ const Login = ({setToken, setIsLoggedIn}) => {
       setToken(login.token);
       setIsLoggedIn(true);
       localStorage.setItem('token', login.token);
-      history('/activities')
+      history('/activities');
     } catch (error) {
       console.error('error login fn', error);
     }
@@ -42,6 +42,7 @@ const Login = ({setToken, setIsLoggedIn}) => {
           name='username'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <label htmlFor='password'>password:</label>
         <input
@@ -50,6 +51,7 @@ const Login = ({setToken, setIsLoggedIn}) => {
           name='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <span>
           <button

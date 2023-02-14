@@ -47,23 +47,25 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
     <div>
       <div>MyRoutines</div>
       <form onSubmit={handleSubmit}>
-        <label>Name: </label>
+        <label className=' text-xs font-medium text-gray-700'>Routine:</label>
         <input
+          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
           type='text'
           name='name'
           value={name}
           onChange={(event) => setName(event.target.value)}
           required
         />
-        <label>Goal: </label>
+        <label className=' text-xs font-medium text-gray-700'>Goal:</label>
         <input
+          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
           type='text'
           name='goal'
           value={goal}
           onChange={(event) => setGoal(event.target.value)}
           required
         />
-        <label>Public?</label>
+        <label className=' text-xs font-medium text-gray-700'>Public?</label>
         <input
           type='checkbox'
           checked={isPublic}
@@ -77,7 +79,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
           <thead>
             <tr>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                name
+                routine
               </th>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 goal
