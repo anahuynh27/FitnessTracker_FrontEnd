@@ -16,9 +16,15 @@ const Register = ({setToken, setIsLoggedIn}) => {
     try {
       const register = await fetchRegister(username, password);
       console.log(register);
+
+      if (register.error) {
+        setMessage(register.message);
+        return;
+      };
+      
       if (register) {
         setMessage(register.message);
-      }
+      };
 
       setToken(register.token);
       setIsLoggedIn(true);

@@ -81,18 +81,23 @@ export const fetchAllPublicRoutines = async () => {
 };
 
 //POST /api/routines (*)
-export const fetchAddRoutine = async (name, goal, isPublic) => {
+export const fetchAddRoutine = async (token, isPublic, name, goal) => {
   const res = await fetch(`${APRURL}/routines`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
-      post: {
-        name: `${name}`,
-        goal: `${goal}`,
-        isPublic: `${isPublic}`,
-      },
+      name: `${name}`,
+      goal: `${goal}`,
+      isPublic: `${isPublic}`,
     }),
   });
   const json = res.json();
+  if (json.error) {
+    throw json.error;
+  }
   return json;
 };
 
