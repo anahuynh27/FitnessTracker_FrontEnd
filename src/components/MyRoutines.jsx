@@ -10,9 +10,6 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
   const [message, setMessage] = useState('');
 
   const history = useNavigate();
-  // useEffect(() => {
-  //   me();
-  // }, []);
 
   useEffect(() => {
     if (!token) {
@@ -74,7 +71,43 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
         <button type='submit'>Submit Routine</button>
         <span>{message}</span>
       </form>
-      <div>
+      <div className='overflow-x-auto'>
+        <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
+          <thead>
+            <tr>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                name
+              </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                goal
+              </th>
+            </tr>
+          </thead>
+
+          <tbody className='divide-y divide-gray-200'>
+            {routines.map((r) => {
+              return (
+                <tr key={r.id}>
+                  <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
+                    {r.name}
+                  </td>
+                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                    {r.goal}
+                  </td>
+                  <td>
+                    <span>edit</span>
+                  </td>
+                  <td>
+                    <span>delete</span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {/* might need to implement ternary */}
+      {/* <div>
         {routines && (
           <>
             {routines.map((r) => {
@@ -87,7 +120,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
             })}
           </>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
