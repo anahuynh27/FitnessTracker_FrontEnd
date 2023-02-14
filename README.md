@@ -9,23 +9,23 @@ Common Requirements (30%)
 As an instructor I want to see you demonstrate mastery (when appropriate) of:
 
     ReactJS Components
-        Creating functional components
-        Exporting & importing of components across files
-        Passing data to components via props
-        Correctly handling user interaction with components (onChange, onClick, etc)
+        Creating functional components ✔️
+        Exporting & importing of components across files ✔️
+        Passing data to components via props ✔️
+        Correctly handling user interaction with components (onChange, onClick, etc) ✔️
     ReactJS Hooks
-        Setting useful initial values for useState
-        Setting state in correct components (closest to where it is necessary)
-        Passing state values and state setters to the correct components
-        Using useEffect to fetch API data in the correct components
-        Making sure the useEffect callback is not async, but instead the code inside is set up for potential async calls
+        Setting useful initial values for useState ✔️
+        Setting state in correct components (closest to where it is necessary) ✔️
+        Passing state values and state setters to the correct components ✔️
+        Using useEffect to fetch API data in the correct components ✔️
+        Making sure the useEffect callback is not async, but instead the code inside is set up for potential async calls **
     Client-Side API Code
-        Writing async functions using try/catch to make API calls
-        Exporting functions from src/api to be consumed by src/components
-        Setting correct headers & bodies for use by API, including the logged in user (if one exists)
+        Writing async functions using try/catch to make API calls ✔️
+        Exporting functions from src/api to be consumed by src/components ✔️
+        Setting correct headers & bodies for use by API, including the logged in user (if one exists) ✔️
     User Concerns
-        Persisting the JWT in localstorage
-        Passing down the logged in state to relevant components
+        Persisting the JWT in localstorage ✔️
+        Passing down the logged in state to relevant components ✔️
     Deployment
         Site should be deployed to Netlify
 
@@ -44,45 +44,45 @@ Routes
 
 As any user when browsing the app, I want to
 
-    click links/tabs that display different parts of the app.
-    see the route I am visiting in the url bar (i.e. Routines tab should have a route https://example.com/routines)
-    stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh)
+    click links/tabs that display different parts of the app. **
+    see the route I am visiting in the url bar (i.e. Routines tab should have a route https://example.com/routines) ✔️
+    stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh) **
     see Components/Tabs with corresponding routes:
-        Home
-        Routines
-        My Routines
-        Activities
-        Login/Register (optional. Could be alternatively created as a modal or part of the header/footer)
+        Home ✔️
+        Routines ✔️
+        My Routines ✔️
+        Activities ✔️
+        Login/Register (optional. Could be alternatively created as a modal or part of the header/footer) ✔️ * (might need in footer)
 
 User
 
 As an unregistered visitor I want to:
 
-    see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal
-    be able to sign up for a new account with valid username/password combination
-    see meaningful messages if there are errors during registration, so that I may correct them
-    see tabbed navigation for Routines and Activities (with matching routes)
+    see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal ✔️
+    be able to sign up for a new account with valid username/password combination ✔️
+    see meaningful messages if there are errors during registration, so that I may correct them ✔️ ** (need to perhaps have a pop up)
+    see tabbed navigation for Routines and Activities (with matching routes) ✔️
 
 As a registered user I want to:
 
-    be able to log in with my username/password combination
-    see meaningful messages if there are errors during login, so that I may correct them
-    stay logged in between page visits (for example, if I close my browser, and come back later)
-    be able to log out if I am logged in
-    see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
+    be able to log in with my username/password combination ✔️
+    see meaningful messages if there are errors during login, so that I may correct them ✔️ ** (might need a popup for signing in)
+    stay logged in between page visits (for example, if I close my browser, and come back later) ✔️
+    be able to log out if I am logged in ✔️
+    see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes) ✔️ 1/2 ** (look into activities part of this)
 
 Routines
 
 As any user on the Routines tab, I want to:
 
     see a list of all public routines showing:
-        The routine name, goal, and creator's username
-        A list of activities for the routine, including their name, description, and duration and/or count
+        The routine name, goal, and creator's username ✔️
+        A list of activities for the routine, including their name, description, and duration and/or count ** (need more info on this)
 
 As a registered user on the My Routines tab, I want to:
 
     be shown a form to create a new routine
-        the form should have text fields for name and goal
+        the form should have text fields for name and goal ✔️
 
     for each routine which is owned by me I should
         be able to update the name and goal for the routine
@@ -95,7 +95,7 @@ Activities
 
 As an unregistered visitor on the Activities tab, I want to:
 
-    see a list of all activities which have been created
+    see a list of all activities which have been created ✔️
 
 As a registered user on the Activities tab, I want to:
 

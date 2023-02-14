@@ -24,7 +24,7 @@ const Activities = () => {
           <thead>
             <tr>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Name
+                Activities
               </th>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Description
