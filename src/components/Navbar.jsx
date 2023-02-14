@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
@@ -7,15 +7,15 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
     localStorage.removeItem('token');
     history('/home');
     setIsLoggedIn(false);
-  }
+  };
 
   useEffect(() => {
     if (!token) {
       const checkToken = localStorage.getItem('token');
       setToken(checkToken);
-      setIsLoggedIn = false;
+      setIsLoggedIn(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, token]);
 
   return (
     <div className='flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8'>
@@ -35,13 +35,15 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
             routines
           </button>
         </Link>
-        {(isLoggedIn) && ( <> 
-        <Link to='/myroutines' className=' active:text-pink-500'>
-          <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
-            my routines
-          </button>
-        </Link>
-        </>)}
+        {isLoggedIn && (
+          <>
+            <Link to='/myroutines' className=' active:text-pink-500'>
+              <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
+                my routines
+              </button>
+            </Link>
+          </>
+        )}
         <Link to='/activities' className='active:text-pink-500'>
           <button className='m-2 font-serif text-xl hover:text-pink-500 focus:text-pink-500'>
             activities
@@ -49,24 +51,29 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
         </Link>
       </div>
       <div className='flex items-center justify-end flex-1'>
-{(!isLoggedIn) ? ( <>
-        <Link to='/login' className=' active:text-pink-500'>
-          <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
-            login
-          </button>
-        </Link>
-        <Link to='/register' className=' active:text-pink-500'>
-          <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
-            register
-          </button>
+        {!isLoggedIn ? (
+          <>
+            <Link to='/login' className=' active:text-pink-500'>
+              <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
+                login
+              </button>
+            </Link>
+            <Link to='/register' className=' active:text-pink-500'>
+              <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
+                register
+              </button>
+            </Link>
+          </>
+        ) : (
+          <Link to='/home' className=' active:text-pink-500'>
+            <button
+              className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'
+              onClick={onClick}
+            >
+              logout
+            </button>
           </Link>
-        </>)
-          : 
-          ( <Link to='/home' className=' active:text-pink-500'>
-          <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500' onClick={onClick}>
-            logout
-          </button>
-        </Link>)}
+        )}
       </div>
     </div>
   );

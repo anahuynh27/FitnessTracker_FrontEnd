@@ -1,5 +1,5 @@
 // get database server
-export const APRURL = "https://fitness-trackr-uyp6.onrender.com/api";
+export const APRURL = 'https://fitness-trackr-uyp6.onrender.com/api';
 
 // export fetchRequests for all endpoints
 
@@ -15,7 +15,7 @@ export const fetchAllActivities = async () => {
 //POST /api/activities (*)
 export const fetchAddActivity = async (name, description) => {
   const res = await fetch(`${APRURL}/activities`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       name: `${name}`,
       description: `${description}`,
@@ -28,7 +28,7 @@ export const fetchAddActivity = async (name, description) => {
 //PATCH /api/activities/:activityId (*)
 export const fetchUpdateActivity = async (name, description, activityId) => {
   const res = fetch(`${APRURL}/activities/${activityId}`, {
-    method: "PATCH",
+    method: 'PATCH',
     body: JSON.stringify({
       name: `${name}`,
       description: `${description}`,
@@ -49,7 +49,7 @@ export const fetchGetRoutinesByActivityId = async (activityId) => {
 //PATCH /api/routine_activities/:routineActivityId (**)
 export const fetchUpdateRA = async (count, duration, routineActivityId) => {
   const res = fetch(`${APRURL}/routine_activities/${routineActivityId}`, {
-    method: "PATCH",
+    method: 'PATCH',
     body: JSON.stringify({
       count: `${count}`,
       duration: `${duration}`,
@@ -62,9 +62,9 @@ export const fetchUpdateRA = async (count, duration, routineActivityId) => {
 //DELETE /api/routine_activities/:routineActivityId (**)
 export const fetchDeleteRA = async (routineActivityId, token) => {
   const res = fetch(`${APRURL}/routine_activities/${routineActivityId}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
@@ -83,9 +83,9 @@ export const fetchAllPublicRoutines = async () => {
 //POST /api/routines (*)
 export const fetchAddRoutine = async (token, isPublic, name, goal) => {
   const res = await fetch(`${APRURL}/routines`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
@@ -104,7 +104,7 @@ export const fetchAddRoutine = async (token, isPublic, name, goal) => {
 //PATCH /api/routines/:routineId (**)
 export const fetchUpdateRoutine = async (name, goal, isPublic) => {
   const res = fetch(`${APRURL}/${routineId}`, {
-    method: "PATCH",
+    method: 'PATCH',
     body: JSON.stringify({
       name: `${name}`,
       goal: `${goal}`,
@@ -117,9 +117,9 @@ export const fetchUpdateRoutine = async (name, goal, isPublic) => {
 //DELETE /api/routines/:routineId (**)
 export const fetchDeleteRoutine = async (routineId, token) => {
   const res = fetch(`${APRURL}/routines/${routineId}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
@@ -135,7 +135,7 @@ export const fetchGetActivitiesByRoutineId = async (
   duration
 ) => {
   const res = fetch(`${APRURL}/routines/${routineId}/activities`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       activityId: `${activityId}`,
       count: `${count}`,
@@ -150,9 +150,9 @@ export const fetchGetActivitiesByRoutineId = async (
 //POST /api/users/register
 export const fetchRegister = async (username, password) => {
   const res = await fetch(`${APRURL}/users/register`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       username: `${username}`,
@@ -166,9 +166,9 @@ export const fetchRegister = async (username, password) => {
 //POST /api/users/login
 export const fetchLogin = async (username, password) => {
   const res = await fetch(`${APRURL}/users/login`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       username: `${username}`,
@@ -183,7 +183,7 @@ export const fetchLogin = async (username, password) => {
 export const fetchMe = async (token) => {
   const res = await fetch(`${APRURL}/users/me`, {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
@@ -192,10 +192,11 @@ export const fetchMe = async (token) => {
 };
 
 //GET /api/users/:username/routines
-export const fetchUsernameRoutines = async (username) => {
+export const fetchUsernameRoutines = async (token, username) => {
   const res = await fetch(`${APRURL}/users/${username}/routines`, {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
   });
   const json = await res.json();
