@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../api/api';
 
-const Register = ({setToken}) => {
+const Register = ({setToken, setIsLoggedIn}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -21,6 +21,7 @@ const Register = ({setToken}) => {
       }
 
       setToken(register.token);
+      setIsLoggedIn(true);
       localStorage.setItem('token', register.token);
       history('/activities');
       console.log('passed through handleSubmit');

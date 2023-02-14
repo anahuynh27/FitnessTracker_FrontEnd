@@ -14,11 +14,17 @@ import "./index.css";
 
 const App = () => {
   const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-white">
-        <Navbar />
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          token={token}
+          setToken={setToken}
+        />
       </header>
       {/* body  */}
       <div className="flex flex-row flex-1">
@@ -28,10 +34,17 @@ const App = () => {
             <Route path="/activities" element={<Activities />} />
             <Route path="/routines" element={<Routines />} />
             <Route path="/myroutines" element={<MyRoutines />} />
-            <Route path="/login" element={<Login setToken={setToken} />} />
+            <Route
+              path="/login"
+              element={
+                <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
+              }
+            />
             <Route
               path="/register"
-              element={<Register setToken={setToken} />}
+              element={
+                <Register setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
+              }
             />
           </Routes>
         </main>

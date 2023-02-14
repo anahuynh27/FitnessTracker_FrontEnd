@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../api/api';
 
-const Login = () => {
+const Login = ({setToken, setIsLoggedIn}) => {
   const [user, setUser] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const history = useNavigate();
 
   // useEffect(() => {
   //   login();
@@ -21,6 +23,11 @@ const Login = () => {
       if (login) {
         setMessage(login.message);
       }
+
+      setToken(login.token);
+      setIsLoggedIn(true);
+      localStorage.setItem('token', login.token);
+      history('/activities')
     } catch (error) {
       console.error('error login fn', error);
     }
