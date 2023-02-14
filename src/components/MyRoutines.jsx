@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchUsernameRoutines, fetchAddRoutine, fetchMe } from '../api/api';
 
 const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
+  const [routines, setRoutines] = useState([]);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    me();
-  }, []);
+  const history = useNavigate();
+  // useEffect(() => {
+  //   me();
+  // }, []);
 
   useEffect(() => {
     if (!token) {
       const checkToken = localStorage.getItem('token');
       setToken(checkToken);
       setIsLoggedIn(false);
+      history('/home');
     }
+    me();
   }, [isLoggedIn, token]);
 
   const handleSubmit = async (event) => {
@@ -35,10 +40,8 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
 
   const me = async () => {
     const { username: username } = await fetchMe(token);
-    // const username = me.username;
-    console.log(username);
-
     const myRoutines = await fetchUsernameRoutines(token, username);
+    setRoutines(myRoutines);
     console.log(myRoutines);
   };
 
@@ -71,6 +74,20 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
         <button type='submit'>Submit Routine</button>
         <span>{message}</span>
       </form>
+      <div>
+        {routines && (
+          <>
+            {routines.map((r) => {
+              return (
+                <div key={r.id}>
+                  <span>Routine: {r.name}</span>
+                  <span>Goal: {r.goal}</span>
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
     </div>
   );
 };
