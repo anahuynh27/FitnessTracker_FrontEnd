@@ -28,7 +28,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
 
     try {
       const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
-      setMessage('Routine added successfully!');
+      setMessage(`Routine ${addRoutine.name} added successfully!`);
     } catch (error) {
       setMessage(error.message);
       console.error('error in handle Submit', error);
@@ -39,7 +39,6 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
     const { username: username } = await fetchMe(token);
     const myRoutines = await fetchUsernameRoutines(token, username);
     setRoutines(myRoutines);
-    console.log(myRoutines);
   };
 
   return (
