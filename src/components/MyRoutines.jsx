@@ -82,6 +82,9 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 goal
               </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                public
+              </th>
             </tr>
           </thead>
 
@@ -94,6 +97,9 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
                   </td>
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {r.goal}
+                  </td>
+                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                    {r.isPublic.toString()}
                   </td>
                   <td>
                     <span>edit</span>
