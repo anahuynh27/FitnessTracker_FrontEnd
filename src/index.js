@@ -1,6 +1,6 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Navbar,
   Activities,
@@ -9,35 +9,40 @@ import {
   Homepage,
   Register,
   Login,
-} from './components';
-import './index.css';
+} from "./components";
+import "./index.css";
 
 const App = () => {
+  const [token, setToken] = useState("");
+
   return (
-    <div className='flex flex-col min-h-screen'>
-      <header className='p-4 bg-white'>
+    <div className="flex flex-col min-h-screen">
+      <header className="p-4 bg-white">
         <Navbar />
       </header>
       {/* body  */}
-      <div className='flex flex-row flex-1'>
-        <main className='flex-1 p-4'>
+      <div className="flex flex-row flex-1">
+        <main className="flex-1 p-4">
           <Routes>
-            <Route path='/home' element={<Homepage />} />
-            <Route path='/activities' element={<Activities />} />
-            <Route path='/routines' element={<Routines />} />
-            <Route path='/myroutines' element={<MyRoutines />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route path="/home" element={<Homepage />} />
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/routines" element={<Routines />} />
+            <Route path="/myroutines" element={<MyRoutines />} />
+            <Route path="/login" element={<Login setToken={setToken} />} />
+            <Route
+              path="/register"
+              element={<Register setToken={setToken} />}
+            />
           </Routes>
         </main>
       </div>
       {/* footer */}
-      <footer className='p-4 text-center bg-white'>
+      <footer className="p-4 text-center bg-white">
         <div>
-          <span className='font-serif'>fitness trackr 2023</span>
+          <span className="font-serif">fitness trackr 2023</span>
         </div>
         <div>
-          <span className='text-slate-500'>
+          <span className="text-slate-500">
             fullstack academy project by ana tran & vincent palomo
           </span>
         </div>
@@ -46,11 +51,11 @@ const App = () => {
   );
 };
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = createRoot(container);
 
 root.render(
   <BrowserRouter>
-    <App tab='home' />
+    <App tab="home" />
   </BrowserRouter>
 );

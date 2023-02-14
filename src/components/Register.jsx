@@ -1,11 +1,12 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../api/api';
 
-const Register = () => {
+const Register = ({setToken}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [token, setToken] = useState("");
   const [message, setMessage] = useState('');
+  const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,14 +15,14 @@ const Register = () => {
 
     try {
       const register = await fetchRegister(username, password);
-
-      if (!register.success) {
-        setMessage(register.error.message);
+      console.log(register);
+      if (register) {
+        setMessage(register.message);
       }
 
-      // setToken(register.data.token);
-      // localStorage.setItem('token', register.data.token);
-      history.pushState('/account');
+      setToken(register.token);
+      localStorage.setItem('token', register.token);
+      history('/activities');
       console.log('passed through handleSubmit');
     } catch (error) {
       console.error('Error Registering, please try again', error);
@@ -44,7 +45,7 @@ const Register = () => {
           onChange={(event) => setUsername(event.target.value)}
           required
         />
-        <labal>Create Password: </labal>
+        <label>Create Password: </label>
         <input
           type='password'
           name='password'
@@ -53,6 +54,7 @@ const Register = () => {
           required
         />
         <button type='submit'>Create Account!</button>
+        <span>{message}</span>
       </form>
     </div>
   );
