@@ -1,5 +1,9 @@
 # FitnessTracker_FrontEnd
 
+render static site: https://fitness-trackr-uyp6.onrender.com
+
+github backend repo: https://github.com/vincentpalomo/UNIV_FitnessTrackr_Starter
+
 Common Requirements (30%)
 
 As an instructor I want to see you demonstrate mastery (when appropriate) of:
