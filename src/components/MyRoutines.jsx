@@ -12,14 +12,22 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
   const history = useNavigate();
 
   useEffect(() => {
+    me();
     if (!token) {
-      const checkToken = localStorage.getItem('token');
-      setToken(checkToken);
       setIsLoggedIn(false);
       history('/home');
+    } else {
+      const checkToken = localStorage.getItem('token');
+      setToken(checkToken);
+      setIsLoggedIn(true);
     }
-    me();
   }, [isLoggedIn, token]);
+
+  const me = async () => {
+    const { username: username } = await fetchMe(token);
+    const myRoutines = await fetchUsernameRoutines(token, username);
+    setRoutines(myRoutines);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,12 +41,6 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
       setMessage(error.message);
       console.error('error in handle Submit', error);
     }
-  };
-
-  const me = async () => {
-    const { username: username } = await fetchMe(token);
-    const myRoutines = await fetchUsernameRoutines(token, username);
-    setRoutines(myRoutines);
   };
 
   return (
