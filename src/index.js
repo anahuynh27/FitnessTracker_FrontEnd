@@ -9,6 +9,7 @@ import {
   Homepage,
   Register,
   Login,
+  NotFound,
 } from './components';
 import './index.css';
 
@@ -40,6 +41,7 @@ const App = () => {
       <div className='flex flex-row flex-1'>
         <main className='flex-1 p-4'>
           <Routes>
+            <Route path='*' element={<NotFound />} />
             <Route
               path='/home'
               element={<Homepage isLoggedIn={isLoggedIn} />}
