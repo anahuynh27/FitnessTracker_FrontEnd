@@ -5,7 +5,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
   const history = useNavigate();
   const onClick = () => {
     localStorage.removeItem('token');
-    history('/home');
+    history('/');
     setIsLoggedIn(false);
   };
 
@@ -20,12 +20,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
   return (
     <div className='flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8'>
       <div className='flex items-center'>
-        <Link to='/home'>
+        <Link to='/'>
           <span className='font-serif text-4xl'>fitness trackr</span>
         </Link>
       </div>
       <div className='flex justify-end flex-1 mr-auto'>
-        <Link to='/home' className='active:text-pink-500'>
+        <Link to='/' className='active:text-pink-500'>
           <button className='m-2 font-serif text-xl hover:text-pink-500 focus:text-pink-500'>
             home
           </button>

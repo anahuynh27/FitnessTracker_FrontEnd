@@ -42,10 +42,7 @@ const App = () => {
         <main className='flex-1 p-4'>
           <Routes>
             <Route path='*' element={<NotFound />} />
-            <Route
-              path='/home'
-              element={<Homepage isLoggedIn={isLoggedIn} />}
-            />
+            <Route path='/' element={<Homepage isLoggedIn={isLoggedIn} />} />
             <Route path='/activities' element={<Activities />} />
             <Route path='/routines' element={<Routines />} />
             <Route
