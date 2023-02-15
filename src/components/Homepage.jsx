@@ -13,10 +13,11 @@ const Homepage = ({ isLoggedIn }) => {
               </h2>
 
               <p className='hidden text-white/90 sm:mt-4 sm:block'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-                egestas tempus tellus etiam sed. Quam a scelerisque amet
-                ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
-                quisque ut interdum tincidunt duis.
+                We're dedicated to helping you achieve your fitness goals and
+                live a healthy, active lifestyle. Our website provides a
+                comprehensive platform to track and manage your workout
+                routines, so you can stay motivated and focused on your fitness
+                journey.
               </p>
               {isLoggedIn ? (
                 <div className='mt-4 md:mt-8'>
