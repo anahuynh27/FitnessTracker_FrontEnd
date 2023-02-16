@@ -13,9 +13,13 @@ export const fetchAllActivities = async () => {
 };
 
 //POST /api/activities (*)
-export const fetchAddActivity = async (name, description) => {
+export const fetchAddActivity = async (name, description, token) => {
   const res = await fetch(`${APRURL}/activities`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: `${name}`,
       description: `${description}`,

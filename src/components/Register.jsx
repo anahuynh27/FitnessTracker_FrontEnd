@@ -36,10 +36,6 @@ const Register = ({setToken, setIsLoggedIn}) => {
     }
   };
 
-  console.log('username', username);
-  console.log('password', password);
-  // console.log("token", token);
-
   return (
 <section class="bg-white">
   <div class="lg:grid lg:min-h-screen lg:grid-cols-12">

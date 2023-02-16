@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllActivities } from '../api/api';
+import { fetchAllActivities, fetchAddActivity } from '../api/api';
 
-const Activities = () => {
+const Activities = ({token}) => {
   const [activities, setActivities] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     allActivities();
   }, []);
+
+  useEffect(() => {}, [activities])
 
   const allActivities = async () => {
     try {
@@ -17,8 +22,50 @@ const Activities = () => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setName('');
+    setDescription("");
+
+    try {
+      const addActivity = await fetchAddActivity(name, description, token);
+      if (addActivity.error) {
+        setMessage("ERROR! Duplicate activity");
+      } else { 
+        setMessage(`Activity ${addActivity.name} added successfully`);
+      }
+      
+      allActivities();
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <div>
+      <form onSubmit={handleSubmit}>
+        <label className=' text-xs font-medium text-gray-700'>Activity:</label>
+        <input
+          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+          type='text'
+          name='name'
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          required
+        />
+        <label className=' text-xs font-medium text-gray-700'>Description:</label>
+        <input
+          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+          type='text'
+          name='description'
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          required
+        />
+      
+        <button type='submit'>Submit Activity</button>
+        <span>{message}</span>
+      </form>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
