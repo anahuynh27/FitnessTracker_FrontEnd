@@ -65,7 +65,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
             </Link>
           </>
         ) : (
-          <Link to='/home' className=' active:text-pink-500'>
+          <Link to='/' className=' active:text-pink-500'>
             <button
               className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'
               onClick={onClick}

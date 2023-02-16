@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchUsernameRoutines, fetchAddRoutine, fetchMe } from '../api/api';
+import { fetchUsernameRoutines, fetchAddRoutine, fetchMe, fetchDeleteRoutine } from '../api/api';
 
 const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
   const [name, setName] = useState('');
@@ -12,16 +12,19 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
   const history = useNavigate();
 
   useEffect(() => {
-    me();
+
     if (!token) {
       setIsLoggedIn(false);
-      history('/home');
+      // history('/');
     } else {
       const checkToken = localStorage.getItem('token');
       setToken(checkToken);
       setIsLoggedIn(true);
+      me();
     }
-  }, [isLoggedIn, token]);
+  }, []);
+
+  useEffect(() => {}, [routines])
 
   const me = async () => {
     const { username: username } = await fetchMe(token);
@@ -36,12 +39,27 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
 
     try {
       const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
+      me();
       setMessage(`Routine ${addRoutine.name} added successfully!`);
     } catch (error) {
       setMessage(error.message);
       console.error('error in handle Submit', error);
     }
   };
+
+
+  const handleDelete = async (routineId, token) => {
+    console.log(routineId);
+    console.log(token);
+    try {
+      const deleteRoutine = await fetchDeleteRoutine(routineId, token);
+      console.log(deleteRoutine);
+      me();
+    } catch (error) {
+      console.error("error deleting");
+    }
+  }
+console.log({routines});
 
   return (
     <div>
@@ -91,7 +109,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
           </thead>
 
           <tbody className='divide-y divide-gray-200'>
-            {routines.map((r) => {
+            {routines?.map((r) => {
               return (
                 <tr key={r.id}>
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
@@ -107,7 +125,9 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
                     <span>edit</span>
                   </td>
                   <td>
-                    <span>delete</span>
+                    <button
+                      onClick={() => {handleDelete(r.id, token)}}
+                    >delete</button>
                   </td>
                 </tr>
               );
@@ -115,21 +135,6 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
           </tbody>
         </table>
       </div>
-      {/* might need to implement ternary */}
-      {/* <div>
-        {routines && (
-          <>
-            {routines.map((r) => {
-              return (
-                <div key={r.id}>
-                  <span>Routine: {r.name}</span>
-                  <span>Goal: {r.goal}</span>
-                </div>
-              );
-            })}
-          </>
-        )}
-      </div> */}
     </div>
   );
 };
