@@ -146,78 +146,6 @@ const Register = ({setToken, setIsLoggedIn}) => {
               className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
           </div>
-{/* 
-          <div className="col-span-6">
-            <label for="Email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-
-            <input
-              type="email"
-              id="Email"
-              name="email"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div> */}
-
-          {/* <div className="col-span-6 sm:col-span-3">
-            <label
-              for="Password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-
-            <input
-              type="password"
-              id="Password"
-              name="password"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div> */}
-{/* 
-          <div className="col-span-6 sm:col-span-3">
-            <label
-              for="PasswordConfirmation"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password Confirmation
-            </label>
-
-            <input
-              type="password"
-              id="PasswordConfirmation"
-              name="password_confirmation"
-              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div> */}
-
-          {/* <div className="col-span-6">
-            <label for="MarketingAccept" className="flex gap-4">
-              <input
-                type="checkbox"
-                id="MarketingAccept"
-                name="marketing_accept"
-                className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
-              /> */}
-
-              {/* <span className="text-sm text-gray-700">
-                I want to receive emails about events, product updates and
-                company announcements.
-              </span>
-            </label>
-          </div> */}
-
-          {/* <div className="col-span-6">
-            <p className="text-sm text-gray-500">
-              By creating an account, you agree to our
-              <a href="#" className="text-gray-700 underline">
-                terms and conditions
-              </a>
-              and
-              <a href="#" className="text-gray-700 underline">privacy policy</a>.
-            </p>
-          </div> */}
 
           <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
             <button
@@ -238,30 +166,6 @@ const Register = ({setToken, setIsLoggedIn}) => {
     </main>
   </div>
 </section>
-
-    // <div>
-    //   <div>Register</div>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>Create Username: </label>
-    //     <input
-    //       type='text'
-    //       name='username'
-    //       value={username}
-    //       onChange={(event) => setUsername(event.target.value)}
-    //       required
-    //     />
-    //     <label>Create Password: </label>
-    //     <input
-    //       type='password'
-    //       name='password'
-    //       value={password}
-    //       onChange={(event) => setPassword(event.target.value)}
-    //       required
-    //     />
-    //     <button type='submit'>Create Account!</button>
-    //     <span>{message}</span>
-    //   </form>
-    // </div>
   );
 };
 
