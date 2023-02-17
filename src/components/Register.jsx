@@ -65,12 +65,11 @@ const Register = ({setToken, setIsLoggedIn}) => {
         </a>
 
         <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-          Welcome to finess trackr 
+          Welcome to fitness trackr 
         </h2>
 
         <p class="mt-4 leading-relaxed text-white/90">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-          dolorum aliquam, quibusdam aperiam voluptatum.
+          Take the first step into a healthier lifestyle by creating an account. Are you ready to begin your fitness journey?
         </p>
       </div>
     </section>
