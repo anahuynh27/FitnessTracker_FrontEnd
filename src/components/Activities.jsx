@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllActivities, fetchAddActivity } from '../api/api';
 
-const Activities = ({token}) => {
+const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     allActivities();
   }, []);
 
-  useEffect(() => {}, [activities])
+  useEffect(() => {}, [activities]);
 
   const allActivities = async () => {
     try {
@@ -25,51 +25,54 @@ const Activities = ({token}) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setName('');
-    setDescription("");
+    setDescription('');
 
     try {
       const addActivity = await fetchAddActivity(name, description, token);
       if (addActivity.error) {
-        setMessage("ERROR! Duplicate activity");
-      } else { 
+        setMessage('ERROR! Duplicate activity');
+      } else {
         setMessage(`Activity ${addActivity.name} added successfully`);
       }
-      
+
       allActivities();
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
 
   return (
-    <div> 
-      {token && ( 
+    <div>
+      {token && (
         <form onSubmit={handleSubmit} className='px-24'>
-          <div className='flex space-x-5 items-center justify-center'>
-            <label className=' text-xs font-medium text-gray-700'>Activity:</label>
-        <input
-          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
-          type='text'
-          name='name'
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-        <label className=' text-xs font-medium text-gray-700'>Description:</label>
-        <input
-          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
-          type='text'
-          name='description'
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-          required
-        />
-      
-        <button className="btn btn-secondary btn-sm" type='submit'>Submit Activity</button>
-        <span>{message}</span>
+          <div className='flex items-center justify-center space-x-5'>
+            <label className='text-xs font-medium text-gray-700 '>
+              Activity:
+            </label>
+            <input
+              className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
+              type='text'
+              name='name'
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
+            />
+            <label className='text-xs font-medium text-gray-700 '>
+              Description:
+            </label>
+            <input
+              className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
+              type='text'
+              name='description'
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              required
+            />
+
+            <button className='btn btn-secondary btn-sm' type='submit'>
+              Submit Activity
+            </button>
+            <span>{message}</span>
           </div>
-        
-      </form>
+        </form>
       )}
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>

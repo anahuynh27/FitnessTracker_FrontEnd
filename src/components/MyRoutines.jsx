@@ -55,39 +55,32 @@ const MyRoutines = ({ token, username }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className='flex space-x-5 items-center justify-center'>
-          <label className=' text-xs font-medium text-gray-700 px-5'>
-            Routine:
-          </label>
+        <div className='flex items-center justify-center space-x-5'>
+          <label className='text-xs font-medium text-gray-700 '>Routine:</label>
           <input
-            className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+            className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
             type='text'
             name='name'
             value={name}
             onChange={(event) => setName(event.target.value)}
             required
           />
-          <label className=' text-xs font-medium text-gray-700 px-5'>
-            Goal:
-          </label>
+          <label className='text-xs font-medium text-gray-700 '>Goal:</label>
           <input
-            className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+            className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
             type='text'
             name='goal'
             value={goal}
             onChange={(event) => setGoal(event.target.value)}
             required
           />
-          <label className=' text-xs font-medium text-gray-700 px-5'>
-            Public?
-          </label>
+          <label className='text-xs font-medium text-gray-700 '>Public?</label>
           <input
             className='checkbox checkbox-info checkbox-sm'
             type='checkbox'
             checked={isPublic}
             onChange={(event) => setIsPublic(event.target.checked)}
           />
-          <span className='px-5'></span>
           <button className='btn btn-secondary btn-sm' type='submit'>
             Submit Routine
           </button>
