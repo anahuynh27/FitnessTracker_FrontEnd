@@ -66,7 +66,7 @@ console.log({routines});
   return (
     <div>
       <form onSubmit={handleSubmit} >
-        <div className='px-10'>
+      <div className='flex space-x-5 items-center justify-center'>
         <label className=' text-xs font-medium text-gray-700 px-5'>Routine:</label>
         <input
           className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
@@ -86,7 +86,8 @@ console.log({routines});
           required
         />
         <label className=' text-xs font-medium text-gray-700 px-5'>Public?</label>
-        <input
+          <input
+            className="checkbox checkbox-info checkbox-sm"
           type='checkbox'
           checked={isPublic}
           onChange={(event) => setIsPublic(event.target.checked)}

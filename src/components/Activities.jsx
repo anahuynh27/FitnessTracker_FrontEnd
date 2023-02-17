@@ -44,8 +44,9 @@ const Activities = ({token}) => {
   return (
     <div> 
       {token && ( 
-      <form onSubmit={handleSubmit}>
-        <label className=' text-xs font-medium text-gray-700'>Activity:</label>
+        <form onSubmit={handleSubmit} className='px-24'>
+          <div className='flex space-x-5 items-center justify-center'>
+            <label className=' text-xs font-medium text-gray-700'>Activity:</label>
         <input
           className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
           type='text'
@@ -66,6 +67,8 @@ const Activities = ({token}) => {
       
         <button className="btn btn-secondary btn-sm" type='submit'>Submit Activity</button>
         <span>{message}</span>
+          </div>
+        
       </form>
       )}
       <div className='overflow-x-auto'>
