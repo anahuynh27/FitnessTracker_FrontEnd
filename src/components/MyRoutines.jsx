@@ -2,34 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUsernameRoutines, fetchAddRoutine, fetchMe, fetchDeleteRoutine } from '../api/api';
 
-const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
+const MyRoutines = ({ token, username }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [routines, setRoutines] = useState([]);
   const [message, setMessage] = useState('');
 
-  const history = useNavigate();
+  // const history = useNavigate();
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (!token) {
+  //     setIsLoggedIn(false);
+  //     // history('/');
+  //   } else {
+  //     const checkToken = localStorage.getItem('token');
+  //     setToken(checkToken);
+  //     setIsLoggedIn(true);
+  //     me();
+  //   }
+  // }, []);
 
-    if (!token) {
-      setIsLoggedIn(false);
-      // history('/');
-    } else {
-      const checkToken = localStorage.getItem('token');
-      setToken(checkToken);
-      setIsLoggedIn(true);
-      me();
-    }
-  }, []);
+  useEffect(() => {getMyRoutines()}, [username])
 
-  useEffect(() => {}, [routines])
-
-  const me = async () => {
-    const { username: username } = await fetchMe(token);
-    const myRoutines = await fetchUsernameRoutines(token, username);
-    setRoutines(myRoutines);
+  const getMyRoutines = async () => {
+    console.log({username});
+    if (username) {
+      const myRoutines = await fetchUsernameRoutines(token, username);
+      setRoutines(myRoutines);
+    } 
+    
   };
 
   const handleSubmit = async (event) => {
@@ -39,7 +41,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
 
     try {
       const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
-      me();
+      getMyRoutines();
       setMessage(`Routine ${addRoutine.name} added successfully!`);
     } catch (error) {
       setMessage(error.message);
@@ -54,7 +56,7 @@ const MyRoutines = ({ token, setToken, isLoggedIn, setIsLoggedIn }) => {
     try {
       const deleteRoutine = await fetchDeleteRoutine(routineId, token);
       console.log(deleteRoutine);
-      me();
+      getMyRoutines();
     } catch (error) {
       console.error("error deleting");
     }
@@ -63,9 +65,9 @@ console.log({routines});
 
   return (
     <div>
-      <div>MyRoutines</div>
-      <form onSubmit={handleSubmit}>
-        <label className=' text-xs font-medium text-gray-700'>Routine:</label>
+      <form onSubmit={handleSubmit} >
+        <div className='px-10'>
+        <label className=' text-xs font-medium text-gray-700 px-5'>Routine:</label>
         <input
           className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
           type='text'
@@ -74,7 +76,7 @@ console.log({routines});
           onChange={(event) => setName(event.target.value)}
           required
         />
-        <label className=' text-xs font-medium text-gray-700'>Goal:</label>
+        <label className=' text-xs font-medium text-gray-700 px-5'>Goal:</label>
         <input
           className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
           type='text'
@@ -83,13 +85,16 @@ console.log({routines});
           onChange={(event) => setGoal(event.target.value)}
           required
         />
-        <label className=' text-xs font-medium text-gray-700'>Public?</label>
+        <label className=' text-xs font-medium text-gray-700 px-5'>Public?</label>
         <input
           type='checkbox'
           checked={isPublic}
           onChange={(event) => setIsPublic(event.target.checked)}
         />
-        <button type='submit'>Submit Routine</button>
+       <span className="px-5"></span>
+          <button className="btn btn-secondary btn-sm" type='submit'>Submit Routine</button>
+        </div>
+        
         <span>{message}</span>
       </form>
       <div className='overflow-x-auto'>

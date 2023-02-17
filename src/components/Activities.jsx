@@ -42,7 +42,8 @@ const Activities = ({token}) => {
   }
 
   return (
-    <div>
+    <div> 
+      {token && ( 
       <form onSubmit={handleSubmit}>
         <label className=' text-xs font-medium text-gray-700'>Activity:</label>
         <input
@@ -63,9 +64,10 @@ const Activities = ({token}) => {
           required
         />
       
-        <button type='submit'>Submit Activity</button>
+        <button className="btn btn-secondary btn-sm" type='submit'>Submit Activity</button>
         <span>{message}</span>
       </form>
+      )}
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>

@@ -1,22 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { fetchMe } from '../api/api'
+ 
+const Navbar = ({ token, username, logout}) => {
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
-  const history = useNavigate();
-  const onClick = () => {
-    localStorage.removeItem('token');
-    history('/');
-    setIsLoggedIn(false);
-  };
-
-  useEffect(() => {
-    if (!token) {
-      const checkToken = localStorage.getItem('token');
-      setToken(checkToken);
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn, token]);
-
+console.log(token);
   return (
     <div className='flex items-center justify-between h-16 mx-auto max-w-screen-2xl sm:px-6 lg:px-8'>
       <div className='flex items-center'>
@@ -35,7 +23,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
             routines
           </button>
         </Link>
-        {isLoggedIn && (
+        {token && (
           <>
             <Link to='/myroutines' className=' active:text-pink-500'>
               <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
@@ -51,7 +39,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
         </Link>
       </div>
       <div className='flex items-center justify-end flex-1'>
-        {!isLoggedIn ? (
+        {!token ? (
           <>
             <Link to='/login' className=' active:text-pink-500'>
               <button className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
@@ -64,15 +52,23 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, token, setToken }) => {
               </button>
             </Link>
           </>
-        ) : (
-          <Link to='/' className=' active:text-pink-500'>
+        ) : (<>
+            <Link to='/myroutines'>
+              <span
+                className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'>
+                👤{username}
+              </span>
+            </Link>
+             
+            <Link to='/' className=' active:text-pink-500'>
             <button
               className='m-2 font-serif text-xl  hover:text-pink-500 focus:text-pink-500'
-              onClick={onClick}
+              onClick={logout}
             >
               logout
             </button>
-          </Link>
+            </Link>
+          </>
         )}
       </div>
     </div>

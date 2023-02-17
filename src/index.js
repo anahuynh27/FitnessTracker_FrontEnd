@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { fetchMe } from "./api/api";
 import {
   Navbar,
   Activities,
@@ -14,28 +15,32 @@ import {
 import "./index.css";
 
 const App = () => {
-  const [token, setToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [username, setUsername] = useState("");
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = token !== "";
+
+  const history = useNavigate();
+  const me = async () => {
+    const { username } = await fetchMe(token);
+    setUsername(username);
+  };
 
   useEffect(() => {
-    if (!token) {
-      setIsLoggedIn(false);
-    } else {
-      const checkToken = localStorage.getItem("token");
-      setToken(checkToken);
-      setIsLoggedIn(true);
-    }
-  }, [isLoggedIn, token]);
+    me();
+  }, [token]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUsername("");
+    setToken("");
+    history("/");
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-white">
-        <Navbar
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          token={token}
-          setToken={setToken}
-        />
+        <Navbar username={username} token={token} logout={logout} />
       </header>
       {/* body  */}
       <div className="flex flex-row flex-1">
@@ -47,26 +52,12 @@ const App = () => {
             <Route path="/routines" element={<Routines />} />
             <Route
               path="/myroutines"
-              element={
-                <MyRoutines
-                  token={token}
-                  setToken={setToken}
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
-              }
+              element={<MyRoutines token={token} username={username} />}
             />
-            <Route
-              path="/login"
-              element={
-                <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
-              }
-            />
+            <Route path="/login" element={<Login setToken={setToken} />} />
             <Route
               path="/register"
-              element={
-                <Register setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
-              }
+              element={<Register setToken={setToken} />}
             />
           </Routes>
         </main>

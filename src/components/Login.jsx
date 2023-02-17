@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../api/api';
 
-const Login = ({ setToken, setIsLoggedIn }) => {
-  const [user, setUser] = useState('');
+const Login = ({ setToken,}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -19,36 +18,39 @@ const Login = ({ setToken, setIsLoggedIn }) => {
     setPassword('');
 
     try {
-      const login = await fetchLogin(username, password);
-      if (login) {
-        setMessage(login.message);
+      if (!username || !password) {
+        setMessage("username or password incorrect")
       }
-
-      setToken(login.token);
-      setIsLoggedIn(true);
-      localStorage.setItem('token', login.token);
-      history('/activities');
+      const login = await fetchLogin(username, password);
+      console.log({login});
+      if (login.error) {
+        setMessage("invalid credentials");
+      } else {
+        setToken(login.token);
+        localStorage.setItem('token', login.token);
+        history('/activities');
+      }
     } catch (error) {
       console.error('error login fn', error);
     }
   };
   return (
-<section class="bg-white">
-  <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
+<section className="bg-white">
+  <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
     <section
-      class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
+      className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
     >
       <img
         alt="Dumbbelles"
         src="https://images.pexels.com/photos/903171/pexels-photo-903171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        class="absolute inset-0 h-full w-full object-cover opacity-80"
+        className="absolute inset-0 h-full w-full object-cover opacity-80"
       />
 
-      <div class="hidden lg:relative lg:block lg:p-12">
-        <a class="block text-white" href="/">
-          <span class="sr-only">Home</span>
+      <div className="hidden lg:relative lg:block lg:p-12">
+        <a className="block text-white" href="/">
+          <span className="sr-only">Home</span>
           <svg
-            class="h-8 sm:h-10"
+            className="h-8 sm:h-10"
             viewBox="0 0 28 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -60,11 +62,11 @@ const Login = ({ setToken, setIsLoggedIn }) => {
           </svg>
         </a>
 
-        <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+        <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
         Login to fitness trackr 
         </h2>
 
-        <p class="mt-4 leading-relaxed text-white/90">
+        <p className="mt-4 leading-relaxed text-white/90">
           Welcome back to fitness trackr
         </p>
       </div>
@@ -72,17 +74,17 @@ const Login = ({ setToken, setIsLoggedIn }) => {
 
     <main
       aria-label="Main"
-      class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
+      className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
     >
-      <div class="max-w-xl lg:max-w-3xl">
-        <div class="relative -mt-16 block lg:hidden">
+      <div className="max-w-xl lg:max-w-3xl">
+        <div className="relative -mt-16 block lg:hidden">
           <a
-            class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 sm:h-20 sm:w-20"
+            className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 sm:h-20 sm:w-20"
             href="/"
           >
-            <span class="sr-only">Home</span>
+            <span className="sr-only">Home</span>
             <svg
-              class="h-8 sm:h-10"
+              className="h-8 sm:h-10"
               viewBox="0 0 28 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -95,18 +97,18 @@ const Login = ({ setToken, setIsLoggedIn }) => {
           </a>
 
           <h1
-            class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
+            className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
           >
             Login to fitness trackr 
           </h1>
 
         </div>
 
-        <form action="#" class="mt-8 grid grid-cols-6 gap-6" onSubmit={login}>
-          <div class="col-span-6 sm:col-span-3">
+        <form action="#" className="mt-8 grid grid-cols-6 gap-6" onSubmit={login}>
+          <div className="col-span-6 sm:col-span-3">
             <label
               htmlFor="Username"
-              class="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
               Username
             </label>
@@ -117,14 +119,14 @@ const Login = ({ setToken, setIsLoggedIn }) => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
           </div>
 
-          <div class="col-span-6 sm:col-span-3">
+          <div className="col-span-6 sm:col-span-3">
             <label
               htmlFor="password"
-              class="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
@@ -135,21 +137,21 @@ const Login = ({ setToken, setIsLoggedIn }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
           </div>
 
-          <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+          <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
           <button
             className='px-4 py-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
             type='submit'
           >
             login
           </button>
-
-            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                <span>{message}</span>
+            <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Need to create an account?
-              <a href="/register" class="text-gray-700 underline">Create Account</a>.
+              <a href="/register" className="text-gray-700 underline">Create Account</a>.
             </p>
           </div>
         </form>
