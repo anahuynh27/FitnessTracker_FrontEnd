@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../api/api';
 
@@ -7,10 +7,6 @@ const Login = ({ setToken }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const history = useNavigate();
-
-  // useEffect(() => {
-  //   login();
-  // }, []);
 
   const login = async (e) => {
     e.preventDefault();
@@ -36,7 +32,7 @@ const Login = ({ setToken }) => {
   };
   return (
     <section className='bg-white'>
-      <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
+      <div className='lg:grid lg:h-screen lg:grid-cols-12'>
         <section className='relative flex items-end h-32 bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6'>
           <img
             alt='Dumbbelles'
@@ -98,7 +94,26 @@ const Login = ({ setToken }) => {
                 Login to fitness trackr
               </h1>
             </div>
-
+            {message && (
+              <div className='alert alert-error shadow-lg'>
+                <div>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='stroke-current flex-shrink-0 h-6 w-6'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+                    />
+                  </svg>
+                  <span>{message}</span>
+                </div>
+              </div>
+            )}
             <form
               action='#'
               className='grid grid-cols-6 gap-6 mt-8'
@@ -142,21 +157,18 @@ const Login = ({ setToken }) => {
 
               <div className='col-span-6 sm:flex sm:items-center sm:gap-4'>
                 <button
-                  className='px-4 py-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
+                  className='inline-block px-12 py-3 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'
                   type='submit'
                 >
                   login
                 </button>
                 <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
                   Need to create an account?
-                  <a href='/register' className='text-gray-700 underline'>
+                  <a href='/register' className='text-gray-700 underline mx-1'>
                     Create Account
                   </a>
                   .
                 </p>
-                <span className='flex items-center justify-center text-pink-500'>
-                  {message}
-                </span>
               </div>
             </form>
           </div>
