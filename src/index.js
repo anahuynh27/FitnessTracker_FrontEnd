@@ -21,7 +21,7 @@ const App = () => {
   const [postId, setPostId] = useState('');
   const isLoggedIn = token !== '';
 
-  console.log({ postId });
+  console.log({ isLoggedIn, postId });
 
   const history = useNavigate();
   const me = async () => {
