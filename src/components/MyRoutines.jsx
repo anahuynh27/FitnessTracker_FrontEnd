@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { fetchUsernameRoutines, fetchAddRoutine, fetchMe, fetchDeleteRoutine } from '../api/api';
+import {
+  fetchUsernameRoutines,
+  fetchAddRoutine,
+  fetchDeleteRoutine,
+} from '../api/api';
 
 const MyRoutines = ({ token, username }) => {
   const [name, setName] = useState('');
@@ -9,29 +12,16 @@ const MyRoutines = ({ token, username }) => {
   const [routines, setRoutines] = useState([]);
   const [message, setMessage] = useState('');
 
-  // const history = useNavigate();
-
-  // useEffect(() => {
-  //   if (!token) {
-  //     setIsLoggedIn(false);
-  //     // history('/');
-  //   } else {
-  //     const checkToken = localStorage.getItem('token');
-  //     setToken(checkToken);
-  //     setIsLoggedIn(true);
-  //     me();
-  //   }
-  // }, []);
-
-  useEffect(() => {getMyRoutines()}, [username])
+  useEffect(() => {
+    getMyRoutines();
+  }, [username]);
 
   const getMyRoutines = async () => {
-    console.log({username});
+    console.log({ username });
     if (username) {
       const myRoutines = await fetchUsernameRoutines(token, username);
       setRoutines(myRoutines);
-    } 
-    
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -49,7 +39,6 @@ const MyRoutines = ({ token, username }) => {
     }
   };
 
-
   const handleDelete = async (routineId, token) => {
     console.log(routineId);
     console.log(token);
@@ -58,44 +47,52 @@ const MyRoutines = ({ token, username }) => {
       console.log(deleteRoutine);
       getMyRoutines();
     } catch (error) {
-      console.error("error deleting");
+      console.error('error deleting');
     }
-  }
-console.log({routines});
+  };
+  console.log({ routines });
 
   return (
     <div>
-      <form onSubmit={handleSubmit} >
-      <div className='flex space-x-5 items-center justify-center'>
-        <label className=' text-xs font-medium text-gray-700 px-5'>Routine:</label>
-        <input
-          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
-          type='text'
-          name='name'
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-        <label className=' text-xs font-medium text-gray-700 px-5'>Goal:</label>
-        <input
-          className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
-          type='text'
-          name='goal'
-          value={goal}
-          onChange={(event) => setGoal(event.target.value)}
-          required
-        />
-        <label className=' text-xs font-medium text-gray-700 px-5'>Public?</label>
+      <form onSubmit={handleSubmit}>
+        <div className='flex space-x-5 items-center justify-center'>
+          <label className=' text-xs font-medium text-gray-700 px-5'>
+            Routine:
+          </label>
           <input
-            className="checkbox checkbox-info checkbox-sm"
-          type='checkbox'
-          checked={isPublic}
-          onChange={(event) => setIsPublic(event.target.checked)}
-        />
-       <span className="px-5"></span>
-          <button className="btn btn-secondary btn-sm" type='submit'>Submit Routine</button>
+            className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+            type='text'
+            name='name'
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            required
+          />
+          <label className=' text-xs font-medium text-gray-700 px-5'>
+            Goal:
+          </label>
+          <input
+            className='mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm'
+            type='text'
+            name='goal'
+            value={goal}
+            onChange={(event) => setGoal(event.target.value)}
+            required
+          />
+          <label className=' text-xs font-medium text-gray-700 px-5'>
+            Public?
+          </label>
+          <input
+            className='checkbox checkbox-info checkbox-sm'
+            type='checkbox'
+            checked={isPublic}
+            onChange={(event) => setIsPublic(event.target.checked)}
+          />
+          <span className='px-5'></span>
+          <button className='btn btn-secondary btn-sm' type='submit'>
+            Submit Routine
+          </button>
         </div>
-        
+
         <span>{message}</span>
       </form>
       <div className='overflow-x-auto'>
@@ -132,8 +129,12 @@ console.log({routines});
                   </td>
                   <td>
                     <button
-                      onClick={() => {handleDelete(r.id, token)}}
-                    >delete</button>
+                      onClick={() => {
+                        handleDelete(r.id, token);
+                      }}
+                    >
+                      delete
+                    </button>
                   </td>
                 </tr>
               );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Homepage = ({ isLoggedIn }) => {
+const Homepage = ({ token }) => {
   return (
     <section>
       <div className='px-4 py-8 mx-auto max-w-screen-2xl sm:px-6 lg:px-8'>
@@ -19,7 +19,7 @@ const Homepage = ({ isLoggedIn }) => {
                 routines, so you can stay motivated and focused on your fitness
                 journey.
               </p>
-              {isLoggedIn ? (
+              {token ? (
                 <div className='mt-4 md:mt-8'>
                   <Link
                     to='/myroutines'
