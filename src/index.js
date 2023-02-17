@@ -11,13 +11,17 @@ import {
   Register,
   Login,
   NotFound,
+  EditRoutine,
 } from './components';
 import './index.css';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [username, setUsername] = useState('');
+  const [postId, setPostId] = useState('');
   const isLoggedIn = token !== '';
+
+  console.log({ postId });
 
   const history = useNavigate();
   const me = async () => {
@@ -51,7 +55,17 @@ const App = () => {
             <Route path='/routines' element={<Routines />} />
             <Route
               path='/myroutines'
-              element={<MyRoutines token={token} username={username} />}
+              element={
+                <MyRoutines
+                  token={token}
+                  username={username}
+                  setPostId={setPostId}
+                />
+              }
+            />
+            <Route
+              path='/edit'
+              element={<EditRoutine postId={postId} token={token} />}
             />
             <Route path='/login' element={<Login setToken={setToken} />} />
             <Route

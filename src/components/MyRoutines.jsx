@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   fetchUsernameRoutines,
   fetchAddRoutine,
   fetchDeleteRoutine,
-  fetchUpdateRoutine,
 } from '../api/api';
 
-const MyRoutines = ({ token, username }) => {
+const MyRoutines = ({ token, username, setPostId }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
@@ -52,56 +52,10 @@ const MyRoutines = ({ token, username }) => {
     }
   };
 
-  const handleEdit = async (name, goal, isPublic, token) => {
-    try {
-      const editRoutine = await fetchUpdateRoutine(name, goal, isPublic, token);
-    } catch (error) {
-      console.error('error edit function', error);
-    }
-  };
-
   console.log({ routines });
 
   return (
     <div>
-      <input type='checkbox' id='my-modal' className='modal-toggle' />
-      <div className='modal'>
-        <div className='modal-box'>
-          <h3 className='font-bold text-lg'>Edit your routine</h3>
-          <p className='py-4'>
-            <form onSubmit={handleEdit}>
-              <label>Routine:</label>
-              <input
-                type='text'
-                name='name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <label>Goal:</label>
-              <input
-                type='text'
-                name='goal'
-                value={goal}
-                onChange={(e) => setGoal(e.target.value)}
-              />
-              <label className='text-xs font-medium text-gray-700 '>
-                Public?
-              </label>
-              <input
-                className='checkbox checkbox-info checkbox-sm'
-                type='checkbox'
-                checked={isPublic}
-                onChange={(event) => setIsPublic(event.target.checked)}
-              />
-            </form>
-          </p>
-          <div className='modal-action'>
-            <label htmlFor='my-modal' className='btn' onSubmit={handleEdit}>
-              edit
-            </label>
-          </div>
-        </div>
-      </div>
       <form onSubmit={handleSubmit}>
         <div className='flex items-center justify-center space-x-5'>
           <label className='text-xs font-medium text-gray-700 '>Routine:</label>
@@ -167,16 +121,22 @@ const MyRoutines = ({ token, username }) => {
                     {r.isPublic.toString()}
                   </td>
                   <td>
-                    <label htmlFor='my-modal' className='btn'>
-                      edit
-                    </label>
+                    <Link to='/edit'>
+                      <button
+                        htmlFor='my-modal'
+                        className='btn btn-sm'
+                        onClick={() => setPostId(r.id)}
+                      >
+                        edit
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button
                       onClick={() => {
                         handleDelete(r.id, token);
                       }}
-                      className='btn'
+                      className='btn btn-sm'
                     >
                       delete
                     </button>

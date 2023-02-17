@@ -115,7 +115,13 @@ export const fetchAddRoutine = async (token, isPublic, name, goal) => {
 };
 
 //PATCH /api/routines/:routineId (**)
-export const fetchUpdateRoutine = async (name, goal, isPublic, token) => {
+export const fetchUpdateRoutine = async (
+  routineId,
+  name,
+  goal,
+  isPublic,
+  token
+) => {
   const res = await fetch(`${APRURL}/routines/${routineId}`, {
     method: 'PATCH',
     headers: {
