@@ -85,8 +85,9 @@ const MyRoutines = ({ token, username }) => {
             Submit Routine
           </button>
         </div>
-
-        <span>{message}</span>
+        <span className='flex items-center justify-center text-pink-500'>
+          {message}
+        </span>
       </form>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>

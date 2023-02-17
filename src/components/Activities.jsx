@@ -70,8 +70,10 @@ const Activities = ({ token }) => {
             <button className='btn btn-secondary btn-sm' type='submit'>
               Submit Activity
             </button>
-            <span>{message}</span>
           </div>
+          <span className='flex items-center justify-center text-pink-500'>
+            {message}
+          </span>
         </form>
       )}
       <div className='overflow-x-auto'>
