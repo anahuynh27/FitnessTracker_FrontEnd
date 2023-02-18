@@ -8,11 +8,11 @@ const AddRoutines = ({ token, setActivity, activity }) => {
   const [goal, setGoal] = useState('');
   const [count, setCount] = useState('');
   const [duration, setDuration] = useState('');
-  // const [activityId, setActivityId] = useState('');
+  const [activityId, setActivityId] = useState('');
   const [routineId, setRoutineId] = useState('');
   const [isPublic, setIsPublic] = useState(true);
-  console.log({ activity });
-  // console.log(activityId);
+  // console.log({ activity });
+  console.log({ activityId });
   console.log({ token });
 
   const history = useNavigate();
@@ -21,14 +21,33 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     e.preventDefault();
     setName('');
     setGoal('');
-    setCount('');
-    setDuration('');
     const routine = await fetchAddRoutine(token, isPublic, name, goal);
     console.log({ routine });
     const rId = routine.id;
     setRoutineId(rId);
 
     // Promise.all([routine, activities]);
+  };
+
+  useEffect(() => {
+    if (routineId !== undefined) {
+      handleAttach(routineId);
+    }
+  }, [routineId]);
+
+  const handleAttach = async (routineId) => {
+    console.log({ routineId, activityId, count, duration });
+    if (count && duration !== '') {
+      const attachActivity = await fetchAddActivitiesByRoutineId(
+        routineId,
+        activityId,
+        count,
+        duration
+      );
+      console.log({ attachActivity });
+      setCount('');
+      setDuration('');
+    }
   };
 
   return (
@@ -69,14 +88,12 @@ const AddRoutines = ({ token, setActivity, activity }) => {
             <div className='mt-5'>
               <ActivityList
                 setActivity={setActivity}
-                routineId={routineId}
-                count={count}
-                duration={duration}
+                setActivityId={setActivityId}
                 className='w-full max-w-xs'
               />
             </div>
 
-            {/* <label className='label'>
+            <label className='label'>
               <span className='label-text'>Count</span>
             </label>
             <input
@@ -95,7 +112,7 @@ const AddRoutines = ({ token, setActivity, activity }) => {
               className='input input-bordered w-full max-w-xs'
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-            /> */}
+            />
 
             <div>
               <button type='submit' className='btn m-6'>

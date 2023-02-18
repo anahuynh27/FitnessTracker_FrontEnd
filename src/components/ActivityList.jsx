@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllActivities, fetchAddActivitiesByRoutineId } from '../api/api';
-const ActivityList = ({ setActivity, routineId }) => {
+const ActivityList = ({ setActivity, setActivityId }) => {
   const [activities, setActivities] = useState([]);
-  const [activityId, setActivityId] = useState(0);
-  const [count, setCount] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [sendActivityId, setSendActivityId] = useState(0);
+  // const [count, setCount] = useState(0);
+  // const [duration, setDuration] = useState(0);
 
-  const history = useNavigate();
+  // const history = useNavigate();
 
   const allActivities = async () => {
     const allActivities = await fetchAllActivities();
@@ -20,31 +20,31 @@ const ActivityList = ({ setActivity, routineId }) => {
     allActivities();
   }, []);
 
-  useEffect(() => {}, [activityId]);
+  useEffect(() => {}, [sendActivityId]);
 
   const handleChange = (e) => {
-    // setSelected(e.target.value);
+    setSendActivityId(e.target.value);
     setActivityId(e.target.value);
   };
-  console.log({ activityId, count, duration });
+  console.log({ sendActivityId });
 
-  useEffect(() => {
-    if ((routineId, count, duration)) {
-      attachActivity();
-    }
-  }, [routineId, count, duration]);
+  // useEffect(() => {
+  //   if ((routineId, count, duration)) {
+  //     attachActivity();
+  //   }
+  // }, [routineId, count, duration]);
 
-  const attachActivity = async () => {
-    console.log({ routineId, activityId, count, duration });
-    const activities = await fetchAddActivitiesByRoutineId(
-      routineId,
-      activityId,
-      count,
-      duration
-    ); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
-    console.log({ activities });
-    history('/myroutines');
-  };
+  // const attachActivity = async () => {
+  //   console.log({ routineId, activityId, count, duration });
+  //   const activities = await fetchAddActivitiesByRoutineId(
+  //     routineId,
+  //     activityId,
+  //     count,
+  //     duration
+  //   ); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
+  //   console.log({ activities });
+  //   history('/myroutines');
+  // };
 
   return (
     //fetch all activities
@@ -63,7 +63,7 @@ const ActivityList = ({ setActivity, routineId }) => {
           <option value={a.id}>{a.name}</option>
         ))}
       </select>
-
+      {/* 
       <label className='label'>
         <span className='label-text'>Count</span>
       </label>
@@ -83,7 +83,7 @@ const ActivityList = ({ setActivity, routineId }) => {
         className='input input-bordered w-full max-w-xs'
         value={duration}
         onChange={(e) => setDuration(e.target.value)}
-      />
+      /> */}
     </div>
   );
 };
