@@ -6,8 +6,13 @@ import ActivityList from './ActivityList';
 const AddRoutines = ({ token, setActivity, activity }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
+  const [count, setCount] = useState('');
+  const [duration, setDuration] = useState('');
+  const [activityId, setActivityId] = useState('');
   const [isPublic, setIsPublic] = useState(true);
   console.log({ activity });
+  console.log(activityId);
+  console.log({token});
 
   const history = useNavigate();
 
@@ -15,8 +20,11 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     e.preventDefault();
     setName('');
     setGoal('');
-    const routine = await fetchAddRoutine(name, goal, isPublic, token);
-    const activities = await fetchAddActivitiesByRoutineId(); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
+    setCount('');
+    setDuration('');
+    const routine = await fetchAddRoutine(token, isPublic, name, goal );
+    console.log(routine);
+    const activities = await fetchAddActivitiesByRoutineId(routine.id, ); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
     history('/myroutines');
   };
 
@@ -56,8 +64,29 @@ const AddRoutines = ({ token, setActivity, activity }) => {
               required
             />
             <div className='mt-5'>
-              <ActivityList setActivity={setActivity} className='w-full max-w-xs'/>
+              <ActivityList setActivity={setActivity} setActivityId={setActivityId}  className='w-full max-w-xs'/>
             </div>
+
+            <label className='label'>
+              <span className='label-text'>Count</span>
+            </label>
+            <input
+              type='text'
+              placeholder='Type here'
+              className='input input-bordered w-full max-w-xs'
+              value={count}
+              onChange={(e) => setCount(e.target.value)}
+            />
+                        <label className='label'>
+              <span className='label-text'>Duration</span>
+            </label>
+            <input
+              type='text'
+              placeholder='Type here'
+              className='input input-bordered w-full max-w-xs'
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            />
                   
             <div>
               <button type='submit' className='btn m-6'>

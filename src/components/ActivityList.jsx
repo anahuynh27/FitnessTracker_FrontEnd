@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllActivities } from '../api/api';
-const ActivityList = ({setActivity}) => {
+const ActivityList = ({setActivity, setActivityId}) => {
   const [activities, setActivities] = useState([]);
   const [selected, setSelected] = useState('');
 
@@ -19,6 +19,7 @@ useEffect(() => {
 
   const handleChange = (e) => {
     setSelected(e.target.value);
+    setActivityId(e.target.value);
   }
   console.log(selected);
   
@@ -33,7 +34,7 @@ useEffect(() => {
       <select onChange={handleChange}  className="select select-info w-full max-w-xs">
         <option value='select activity'>select activity</option>
         {activities.map((a) => (
-          <option value = {a.name}>{a.name}</option>
+          <option value = {a.id}>{a.name}</option>
         ))}
       </select>
     </div>
