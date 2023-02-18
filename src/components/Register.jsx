@@ -28,6 +28,7 @@ const Register = ({ setToken, setIsLoggedIn }) => {
 
       setToken(register.token);
       setIsLoggedIn(true);
+      let setIsLoggedIn = true;
       localStorage.setItem('token', register.token);
       history('/activities');
       console.log('passed through handleSubmit');
