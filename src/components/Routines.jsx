@@ -11,6 +11,7 @@ const Routines = () => {
   const allRoutines = async () => {
     try {
       const routines = await fetchAllPublicRoutines();
+      console.log({ routines });
       setRoutines(routines);
     } catch (error) {
       console.error('error all Routines function', error);

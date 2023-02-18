@@ -5,8 +5,9 @@ import {
   fetchAddRoutine,
   fetchDeleteRoutine,
 } from '../api/api';
+import ActivityList from './ActivityList';
 
-const MyRoutines = ({ token, username, setPostId }) => {
+const MyRoutines = ({ token, username, setRoutineEdit }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
@@ -21,6 +22,7 @@ const MyRoutines = ({ token, username, setPostId }) => {
     console.log({ username });
     if (username) {
       const myRoutines = await fetchUsernameRoutines(token, username);
+      console.log({ myRoutines });
       setRoutines(myRoutines);
     }
   };
@@ -90,6 +92,7 @@ const MyRoutines = ({ token, username, setPostId }) => {
         <span className='flex items-center justify-center text-pink-500'>
           {message}
         </span>
+        <ActivityList />
       </form>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
@@ -125,7 +128,7 @@ const MyRoutines = ({ token, username, setPostId }) => {
                       <button
                         htmlFor='my-modal'
                         className='btn btn-sm'
-                        onClick={() => setPostId(r.id)}
+                        onClick={() => setRoutineEdit(r)}
                       >
                         edit
                       </button>

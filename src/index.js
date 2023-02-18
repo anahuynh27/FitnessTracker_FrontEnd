@@ -19,9 +19,10 @@ const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [username, setUsername] = useState('');
   const [postId, setPostId] = useState('');
+  const [routineEdit, setRoutineEdit] = useState('');
   const isLoggedIn = token !== '';
 
-  console.log({ isLoggedIn, postId });
+  console.log({ isLoggedIn, routineEdit });
 
   const history = useNavigate();
   const me = async () => {
@@ -59,13 +60,13 @@ const App = () => {
                 <MyRoutines
                   token={token}
                   username={username}
-                  setPostId={setPostId}
+                  setRoutineEdit={setRoutineEdit}
                 />
               }
             />
             <Route
               path='/edit'
-              element={<EditRoutine postId={postId} token={token} />}
+              element={<EditRoutine routineEdit={routineEdit} token={token} />}
             />
             <Route path='/login' element={<Login setToken={setToken} />} />
             <Route

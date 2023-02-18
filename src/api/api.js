@@ -154,7 +154,7 @@ export const fetchDeleteRoutine = async (routineId, token) => {
 };
 
 //POST /api/routines/:routineId/activities
-export const fetchGetActivitiesByRoutineId = async (
+export const fetchAddActivitiesByRoutineId = async (
   routineId,
   activityId,
   count,

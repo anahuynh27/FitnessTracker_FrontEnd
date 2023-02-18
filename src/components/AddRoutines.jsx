@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { fetchUpdateRoutine } from '../api/api';
+import { fetchAddActivity, fetchAddActivitiesByRoutineId } from '../api/api';
+import ActivityList from './ActivityList';
 
-const EditRoutine = ({ routineEdit, token }) => {
-  const [name, setName] = useState(routineEdit.name);
-  const [goal, setGoal] = useState(routineEdit.goal);
+const AddRoutine = ({ token }) => {
+  const [addActivity, setAddActivity] = useState([]);
+  const [name, setName] = useState('');
+  const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(true);
-  console.log({ token, routineEdit });
+  console.log({ token });
 
   const history = useNavigate();
 
@@ -14,7 +16,8 @@ const EditRoutine = ({ routineEdit, token }) => {
     e.preventDefault();
     setName('');
     setGoal('');
-    await fetchUpdateRoutine(routineEdit?.id, name, goal, isPublic, token);
+    const routine = await fetchAddRoutine(name, goal, isPublic, token);
+    const activities = await fetchAddActivitiesByRoutineId(); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
     history('/myroutines');
   };
 
@@ -64,8 +67,9 @@ const EditRoutine = ({ routineEdit, token }) => {
           </div>
         </div>
       </form>
+      <ActivityList />
     </div>
   );
 };
 
-export default EditRoutine;
+export default AddRoutine;
