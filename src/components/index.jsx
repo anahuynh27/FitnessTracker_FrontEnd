@@ -9,3 +9,4 @@ export { default as NotFound } from './NotFound';
 export { default as EditRoutine } from './EditRoutine';
 export { default as ActivityList } from './ActivityList';
 export { default as AddRoutines } from './AddRoutines';
+export { default as SingleUser } from './SingleUser';

@@ -13,6 +13,7 @@ import {
   NotFound,
   EditRoutine,
   AddRoutines,
+  SingleUser,
 } from "./components";
 import "./index.css";
 
@@ -75,6 +76,11 @@ const App = () => {
                   token={token}
                 />
               }
+            />
+            {/* not sure if the route below is needed? */}
+            <Route
+              path="/:username/routines"
+              element={<SingleUser username={username} />}
             />
             <Route
               path="/edit"
