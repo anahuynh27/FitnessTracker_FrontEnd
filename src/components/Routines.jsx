@@ -39,6 +39,12 @@ const Routines = () => {
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Description
               </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                Count
+              </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                Duration
+              </th>
             </tr>
           </thead>
 
@@ -63,6 +69,16 @@ const Routines = () => {
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {r.activities.map((ra) => {
                       return <span key={ra.id}>{ra.description}</span>;
+                    })}
+                  </td>
+                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                    {r.activities.map((ra) => {
+                      return <span key={ra.id}>{ra.count}</span>;
+                    })}
+                  </td>
+                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                    {r.activities.map((ra) => {
+                      return <span key={ra.id}>{ra.duration}</span>;
                     })}
                   </td>
                 </tr>

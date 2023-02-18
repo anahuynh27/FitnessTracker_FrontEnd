@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { fetchAddActivity, fetchAddActivitiesByRoutineId } from '../api/api';
+import {fetchAddActivitiesByRoutineId, fetchAddRoutine } from '../api/api';
 import ActivityList from './ActivityList';
 
-const AddRoutine = ({ token }) => {
+const AddRoutines = ({ token }) => {
   const [addActivity, setAddActivity] = useState([]);
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
@@ -56,6 +56,10 @@ const AddRoutine = ({ token }) => {
               onChange={(event) => setIsPublic(event.target.checked)}
               required
             />
+            <div className='mt-5'>
+              <ActivityList className='w-full max-w-xs'/>
+            </div>
+                  
             <div>
               <button type='submit' className='btn m-6'>
                 submit
@@ -67,9 +71,9 @@ const AddRoutine = ({ token }) => {
           </div>
         </div>
       </form>
-      <ActivityList />
+      {/* <ActivityList /> */}
     </div>
   );
 };
 
-export default AddRoutine;
+export default AddRoutines;

@@ -58,7 +58,7 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div className='flex items-center justify-center space-x-5'>
           <label className='text-xs font-medium text-gray-700 '>Routine:</label>
           <input
@@ -93,7 +93,10 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
           {message}
         </span>
         <ActivityList />
-      </form>
+      </form> */}
+      <Link to='/add'>
+      <button className='btn btn-secondary btn-sm'>Create Routine</button>
+      </Link>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>

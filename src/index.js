@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { fetchMe } from './api/api';
+import React, { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { fetchMe } from "./api/api";
 import {
   Navbar,
   Activities,
@@ -12,15 +12,16 @@ import {
   Login,
   NotFound,
   EditRoutine,
-} from './components';
-import './index.css';
+  AddRoutines,
+} from "./components";
+import "./index.css";
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [username, setUsername] = useState('');
-  const [postId, setPostId] = useState('');
-  const [routineEdit, setRoutineEdit] = useState('');
-  const isLoggedIn = token !== '';
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [username, setUsername] = useState("");
+  const [postId, setPostId] = useState("");
+  const [routineEdit, setRoutineEdit] = useState("");
+  const isLoggedIn = token !== "";
 
   console.log({ isLoggedIn, routineEdit });
 
@@ -35,27 +36,27 @@ const App = () => {
   }, [token]);
 
   const logout = () => {
-    localStorage.removeItem('token');
-    setUsername('');
-    setToken('');
-    history('/');
+    localStorage.removeItem("token");
+    setUsername("");
+    setToken("");
+    history("/");
   };
 
   return (
-    <div className='flex flex-col min-h-screen'>
-      <header className='p-4 bg-white'>
+    <div className="flex flex-col min-h-screen">
+      <header className="p-4 bg-white">
         <Navbar username={username} token={token} logout={logout} />
       </header>
       {/* body  */}
-      <div className='flex flex-row flex-1'>
-        <main className='flex-1 p-4'>
+      <div className="flex flex-row flex-1">
+        <main className="flex-1 p-4">
           <Routes>
-            <Route path='*' element={<NotFound />} />
-            <Route path='/' element={<Homepage token={token} />} />
-            <Route path='/activities' element={<Activities token={token} />} />
-            <Route path='/routines' element={<Routines />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Homepage token={token} />} />
+            <Route path="/activities" element={<Activities token={token} />} />
+            <Route path="/routines" element={<Routines />} />
             <Route
-              path='/myroutines'
+              path="/myroutines"
               element={
                 <MyRoutines
                   token={token}
@@ -64,25 +65,26 @@ const App = () => {
                 />
               }
             />
+            <Route path="/add" element={<AddRoutines token={token} />} />
             <Route
-              path='/edit'
+              path="/edit"
               element={<EditRoutine routineEdit={routineEdit} token={token} />}
             />
-            <Route path='/login' element={<Login setToken={setToken} />} />
+            <Route path="/login" element={<Login setToken={setToken} />} />
             <Route
-              path='/register'
+              path="/register"
               element={<Register setToken={setToken} />}
             />
           </Routes>
         </main>
       </div>
       {/* footer */}
-      <footer className='p-4 text-center bg-white'>
+      <footer className="p-4 text-center bg-white">
         <div>
-          <span className='font-serif'>fitness trackr 2023</span>
+          <span className="font-serif">fitness trackr 2023</span>
         </div>
         <div>
-          <span className='text-slate-500'>
+          <span className="text-slate-500">
             fullstack academy project by ana tran & vincent palomo
           </span>
         </div>
@@ -91,11 +93,11 @@ const App = () => {
   );
 };
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = createRoot(container);
 
 root.render(
   <BrowserRouter>
-    <App tab='home' />
+    <App tab="home" />
   </BrowserRouter>
 );
