@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import {fetchAddActivitiesByRoutineId, fetchAddRoutine } from '../api/api';
+import { fetchAddActivitiesByRoutineId, fetchAddRoutine } from '../api/api';
 import ActivityList from './ActivityList';
 
 const AddRoutines = ({ token, setActivity, activity }) => {
@@ -8,11 +8,12 @@ const AddRoutines = ({ token, setActivity, activity }) => {
   const [goal, setGoal] = useState('');
   const [count, setCount] = useState('');
   const [duration, setDuration] = useState('');
-  const [activityId, setActivityId] = useState('');
+  // const [activityId, setActivityId] = useState('');
+  const [routineId, setRoutineId] = useState('');
   const [isPublic, setIsPublic] = useState(true);
   console.log({ activity });
-  console.log(activityId);
-  console.log({token});
+  // console.log(activityId);
+  console.log({ token });
 
   const history = useNavigate();
 
@@ -22,12 +23,12 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     setGoal('');
     setCount('');
     setDuration('');
-    const routine = await fetchAddRoutine(token, isPublic, name, goal );
-    console.log({routine});
-    const activities = await fetchAddActivitiesByRoutineId(routine.id, activityId, count, duration); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
-    console.log({ activities });
-    Promise.all([routine, activities])
-    history('/myroutines');
+    const routine = await fetchAddRoutine(token, isPublic, name, goal);
+    console.log({ routine });
+    const rId = routine.id;
+    setRoutineId(rId);
+
+    // Promise.all([routine, activities]);
   };
 
   return (
@@ -66,10 +67,16 @@ const AddRoutines = ({ token, setActivity, activity }) => {
               required
             />
             <div className='mt-5'>
-              <ActivityList setActivity={setActivity} setActivityId={setActivityId}  className='w-full max-w-xs'/>
+              <ActivityList
+                setActivity={setActivity}
+                routineId={routineId}
+                count={count}
+                duration={duration}
+                className='w-full max-w-xs'
+              />
             </div>
 
-            <label className='label'>
+            {/* <label className='label'>
               <span className='label-text'>Count</span>
             </label>
             <input
@@ -79,7 +86,7 @@ const AddRoutines = ({ token, setActivity, activity }) => {
               value={count}
               onChange={(e) => setCount(e.target.value)}
             />
-                        <label className='label'>
+            <label className='label'>
               <span className='label-text'>Duration</span>
             </label>
             <input
@@ -88,8 +95,8 @@ const AddRoutines = ({ token, setActivity, activity }) => {
               className='input input-bordered w-full max-w-xs'
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-            />
-                  
+            /> */}
+
             <div>
               <button type='submit' className='btn m-6'>
                 submit
