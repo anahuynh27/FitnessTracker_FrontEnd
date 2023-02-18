@@ -3,12 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import {fetchAddActivitiesByRoutineId, fetchAddRoutine } from '../api/api';
 import ActivityList from './ActivityList';
 
-const AddRoutines = ({ token }) => {
-  const [addActivity, setAddActivity] = useState([]);
+const AddRoutines = ({ token, setActivity, activity }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(true);
-  console.log({ token });
+  console.log({ activity });
 
   const history = useNavigate();
 
@@ -57,7 +56,7 @@ const AddRoutines = ({ token }) => {
               required
             />
             <div className='mt-5'>
-              <ActivityList className='w-full max-w-xs'/>
+              <ActivityList setActivity={setActivity} className='w-full max-w-xs'/>
             </div>
                   
             <div>
@@ -71,7 +70,6 @@ const AddRoutines = ({ token }) => {
           </div>
         </div>
       </form>
-      {/* <ActivityList /> */}
     </div>
   );
 };

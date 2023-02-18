@@ -21,9 +21,10 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [postId, setPostId] = useState("");
   const [routineEdit, setRoutineEdit] = useState("");
+  const [activity, setActivity] = useState([]);
   const isLoggedIn = token !== "";
 
-  console.log({ isLoggedIn, routineEdit });
+  console.log({ activity });
 
   const history = useNavigate();
   const me = async () => {
@@ -65,7 +66,16 @@ const App = () => {
                 />
               }
             />
-            <Route path="/add" element={<AddRoutines token={token} />} />
+            <Route
+              path="/add"
+              element={
+                <AddRoutines
+                  activity={activity}
+                  setActivity={setActivity}
+                  token={token}
+                />
+              }
+            />
             <Route
               path="/edit"
               element={<EditRoutine routineEdit={routineEdit} token={token} />}

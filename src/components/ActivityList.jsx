@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllActivities } from '../api/api';
-const ActivityList = () => {
-  const [activity, setActivity] = useState([]);
+const ActivityList = ({setActivity}) => {
+  const [activities, setActivities] = useState([]);
+  const [selected, setSelected] = useState('');
 
   const allActivities = async () => {
     const allActivities = await fetchAllActivities();
     console.log({ allActivities });
     setActivity(allActivities);
+    setActivities(allActivities)
   };
   
 useEffect(() => {
   allActivities();
 }, [])
+  
+  useEffect(() => {}, [selected])
 
+  const handleChange = (e) => {
+    setSelected(e.target.value);
+  }
+  console.log(selected);
   
   return (
     //fetch all activities
@@ -22,9 +30,9 @@ useEffect(() => {
     //when user saves, run two fetch request add routines and add add activities to routine
     
     <div>
-      <select className="select select-info w-full max-w-xs">
+      <select onChange={handleChange}  className="select select-info w-full max-w-xs">
         <option value='select activity'>select activity</option>
-        {activity.map((a) => (
+        {activities.map((a) => (
           <option value = {a.name}>{a.name}</option>
         ))}
       </select>
