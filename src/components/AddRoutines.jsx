@@ -37,7 +37,7 @@ const AddRoutines = ({ token, setActivity, activity }) => {
 
   const handleAttach = async (routineId) => {
     console.log({ routineId, activityId, count, duration });
-    if (count && duration !== '') {
+    if (count !== '' && duration !== '') {
       const attachActivity = await fetchAddActivitiesByRoutineId(
         routineId,
         activityId,
