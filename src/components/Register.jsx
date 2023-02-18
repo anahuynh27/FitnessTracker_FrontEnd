@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../api/api';
 
-const Register = ({ setToken, setIsLoggedIn }) => {
+const Register = ({ setToken}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -15,7 +15,7 @@ const Register = ({ setToken, setIsLoggedIn }) => {
 
     try {
       const register = await fetchRegister(username, password);
-      console.log(register);
+      console.log({register});
 
       if (register.error) {
         setMessage(register.message);
@@ -27,14 +27,14 @@ const Register = ({ setToken, setIsLoggedIn }) => {
       }
 
       setToken(register.token);
-      setIsLoggedIn(true);
-      let setIsLoggedIn = true;
       localStorage.setItem('token', register.token);
       history('/activities');
       console.log('passed through handleSubmit');
     } catch (error) {
       console.error('Error Registering, please try again', error);
     }
+
+    console.log({message});
   };
 
   return (
@@ -126,7 +126,8 @@ const Register = ({ setToken, setIsLoggedIn }) => {
                   <span>{message}</span>
                 </div>
               </div>
-            )}
+            ) }
+
 
             <form
               action='#'
