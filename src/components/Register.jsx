@@ -29,7 +29,6 @@ const Register = ({ setToken}) => {
       setToken(register.token);
       localStorage.setItem('token', register.token);
       history('/activities');
-      console.log('passed through handleSubmit');
     } catch (error) {
       console.error('Error Registering, please try again', error);
     }
