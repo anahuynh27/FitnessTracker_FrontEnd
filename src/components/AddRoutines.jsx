@@ -23,8 +23,10 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     setCount('');
     setDuration('');
     const routine = await fetchAddRoutine(token, isPublic, name, goal );
-    console.log(routine);
-    const activities = await fetchAddActivitiesByRoutineId(routine.id, ); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
+    console.log({routine});
+    const activities = await fetchAddActivitiesByRoutineId(routine.id, activityId, count, duration); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
+    console.log({ activities });
+    Promise.all([routine, activities])
     history('/myroutines');
   };
 
