@@ -23,9 +23,11 @@ const App = () => {
   const [postId, setPostId] = useState("");
   const [routineEdit, setRoutineEdit] = useState("");
   const [activity, setActivity] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
   const isLoggedIn = token !== "";
 
   console.log({ activity });
+  console.log({ selectedUser });
 
   const history = useNavigate();
   const me = async () => {
@@ -36,6 +38,8 @@ const App = () => {
   useEffect(() => {
     me();
   }, [token]);
+
+  useEffect(() => {}, [selectedUser]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -56,7 +60,15 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Homepage token={token} />} />
             <Route path="/activities" element={<Activities token={token} />} />
-            <Route path="/routines" element={<Routines />} />
+            <Route
+              path="/routines"
+              element={
+                <Routines
+                  selectedUser={selectedUser}
+                  setSelectedUser={setSelectedUser}
+                />
+              }
+            />
             <Route
               path="/myroutines"
               element={
@@ -79,8 +91,8 @@ const App = () => {
             />
             {/* not sure if the route below is needed? */}
             <Route
-              path="/:username/routines"
-              element={<SingleUser username={username} />}
+              path={`/${selectedUser}/routines`}
+              element={<SingleUser selectedUser={selectedUser} />}
             />
             <Route
               path="/edit"

@@ -7,15 +7,16 @@ import { fetchUsernameRoutines, fetchAllPublicRoutines } from '../api/api'
 //use fetchAllPublicRoutines to then filter to one user?
 
 
-const SingleUser = ({ token, username }) => {
+const SingleUser = ({selectedUser }) => {
     const [routines, setRoutines] = useState([]);
     const [usersRoutines, setUsersRoutines] = useState([]);
-    console.log(username);
+    console.log({selectedUser});
 
     useEffect(() => {
         allRoutines();
         // oneRoutines();
-      }, []);
+    }, []);
+  useEffect(() => {}, [selectedUser])
     
       const allRoutines = async () => {
         try {
@@ -27,15 +28,15 @@ const SingleUser = ({ token, username }) => {
         }
       };
     
-    const oneRoutines = async () => {
-        try {
-            const users = await fetchUsernameRoutines(token, username);
-            console.log({ users });
-            setUsersRoutines(users)
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    // const oneRoutines = async () => {
+    //     try {
+    //         const users = await fetchUsernameRoutines(token, username);
+    //         console.log({ users });
+    //         setUsersRoutines(users)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     return (
     <div>
@@ -68,7 +69,7 @@ const SingleUser = ({ token, username }) => {
             </thead>
                     
             <tbody>
-                        {routines.filter((r) => (r.creatorName === username))
+                        {routines.filter((r) => (r.creatorName === selectedUser))
                             .map((r) => {
                                 return (
                                     <tr key={r.id}>

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchAllPublicRoutines } from '../api/api';
 
-const Routines = () => {
+const Routines = ({selectedUser, setSelectedUser}) => {
   const [routines, setRoutines] = useState([]);
+  const history = useNavigate();
 
   useEffect(() => {
     allRoutines();
-  }, []);
+  }, [selectedUser]);
+
+  // useEffect(() => {}, [selectedUser])
 
   const allRoutines = async () => {
     try {
@@ -17,6 +21,12 @@ const Routines = () => {
       console.error('error all Routines function', error);
     }
   };
+
+  const handleClick = async (creatorName) => {
+    console.log(creatorName);
+    setSelectedUser(creatorName);
+    history(`/${selectedUser}`)
+  }
 
   return (
     <div>
@@ -53,7 +63,10 @@ const Routines = () => {
               return (
                 <tr key={r.id}>
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-                    {r.creatorName}
+                    <button
+                      onClick={() => handleClick(r.creatorName) }>
+                      {r.creatorName}
+                    </button>
                   </td>
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {r.name}
