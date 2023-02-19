@@ -50,7 +50,7 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
       <input
         className='input input-bordered input-secondary w-full max-w-xs'
         value={search}
-        placeholder="search bar"
+        placeholder="search"
       onChange={(event) => {setSearch(event.target.value)}} />
       </form>
       }

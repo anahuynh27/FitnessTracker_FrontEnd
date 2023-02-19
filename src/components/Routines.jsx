@@ -53,7 +53,7 @@ const Routines = ({
         <input
           className='input input-bordered input-secondary w-full max-w-xs'
           value={search}
-          placeholder='search bar'
+          placeholder='search'
           onChange={(event) => { setSearch(event.target.value) }} />
       </form>}
 
@@ -86,7 +86,7 @@ const Routines = ({
           </thead>
 
           <tbody className='divide-y divide-gray-200'>
-            {routines.filter(r => {
+            {/* {routines.filter(r => {
               if (search === "") {
                 return r;
               } else if (r.creatorName.toLowerCase().includes(search)) {
@@ -96,7 +96,7 @@ const Routines = ({
               } else if (r.goal.toLowerCase().includes(search)) {
                 return r.goal;
               } 
-            })}
+            })} */}
             {routines.map((r) => {
               return (
                 <tr key={r.id}>
