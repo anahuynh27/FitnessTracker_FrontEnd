@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { fetchAddActivitiesByRoutineId, fetchAddRoutine } from '../api/api';
 import ActivityList from './ActivityList';
 
-const AddRoutines = ({ token, setActivity, activity }) => {
+const AddRoutines = ({ token, setActivity }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [count, setCount] = useState(0);

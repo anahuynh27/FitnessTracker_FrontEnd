@@ -1,8 +1,6 @@
 // get database server
 export const APRURL = 'https://fitness-trackr-uyp6.onrender.com/api';
 
-// activities endpoints
-
 // all activities
 export const fetchAllActivities = async () => {
   const res = await fetch(`${APRURL}/activities`);

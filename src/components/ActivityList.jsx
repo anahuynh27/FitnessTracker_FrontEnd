@@ -4,10 +4,6 @@ import { fetchAllActivities, fetchAddActivitiesByRoutineId } from '../api/api';
 const ActivityList = ({ setActivity, setActivityId }) => {
   const [activities, setActivities] = useState([]);
   const [sendActivityId, setSendActivityId] = useState(0);
-  // const [count, setCount] = useState(0);
-  // const [duration, setDuration] = useState(0);
-
-  // const history = useNavigate();
 
   const allActivities = async () => {
     const allActivities = await fetchAllActivities();
