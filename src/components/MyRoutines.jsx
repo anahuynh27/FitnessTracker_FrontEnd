@@ -32,6 +32,11 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
 
   return (
     <div>
+      {/*
+      center this create routine button
+      probably add ability to search own routines
+      map activites that were added
+      */}
       <Link to='/add'>
         <button className='btn btn-secondary btn-sm'>Create Routine</button>
       </Link>
