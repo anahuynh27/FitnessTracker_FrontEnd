@@ -11,9 +11,6 @@ const AddRoutines = ({ token, setActivity, activity }) => {
   const [activityId, setActivityId] = useState('');
   const [routineId, setRoutineId] = useState('');
   const [isPublic, setIsPublic] = useState(true);
-  // console.log({ activity });
-  console.log({ activityId, routineId });
-  console.log({ token });
 
   const history = useNavigate();
 
@@ -21,36 +18,22 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     e.preventDefault();
     setName('');
     setGoal('');
-    // setCount(0);
-    // setDuration(0);
     const routine = await fetchAddRoutine(token, isPublic, name, goal);
     console.log({ routine });
     const rId = routine.id;
     setRoutineId(rId);
-
-    // if (routineId) {
-    //   console.log({ routineId, activityId, count, duration });
-    //   const attachActivity = await fetchAddActivitiesByRoutineId(
-    //     routineId,
-    //     activityId,
-    //     count,
-    //     duration
-    //   );
-    //   console.log({ attachActivity });
-    //   history('/myroutines');
-    // }
-
-    // Promise.all([routine, activities]);
   };
 
   useEffect(() => {
-    console.log({ routineId, activityId, count, duration });
-    if (routineId !== '') {
-      handleAttach(routineId, activityId, count, duration);
+    console.log({ routineId, activityId });
+    if (routineId && activityId) {
+      setCount(count);
+      setDuration(duration);
+      handleAttach();
     }
   }, [routineId, activityId]);
 
-  const handleAttach = async (routineId, activityId, count, duration) => {
+  const handleAttach = async () => {
     console.log({ routineId, activityId, count, duration });
     if (count !== '' && duration !== '') {
       const attachActivity = await fetchAddActivitiesByRoutineId(
@@ -60,8 +43,10 @@ const AddRoutines = ({ token, setActivity, activity }) => {
         duration
       );
       console.log({ attachActivity });
+      console.log({ routineId, activityId, count, duration });
       setCount('');
       setDuration('');
+      history('/myroutines');
     }
   };
 

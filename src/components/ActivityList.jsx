@@ -47,20 +47,16 @@ const ActivityList = ({ setActivity, setActivityId }) => {
   // };
 
   return (
-    //fetch all activities
-    //map activities with a checkbox
-    // input for count and duration
-    //when activity checked add to object in state
-    //when user saves, run two fetch request add routines and add add activities to routine
-
     <div>
       <select
         onChange={handleChange}
-        className='select select-info w-full max-w-xs'
+        className='w-full max-w-xs select select-info'
       >
         <option value='select activity'>select activity</option>
         {activities.map((a) => (
-          <option value={a.id}>{a.name}</option>
+          <option value={a.id} key={a.id}>
+            {a.name}
+          </option>
         ))}
       </select>
       {/* 
@@ -70,7 +66,7 @@ const ActivityList = ({ setActivity, setActivityId }) => {
       <input
         type='text'
         placeholder='Type here'
-        className='input input-bordered w-full max-w-xs'
+        className='w-full max-w-xs input input-bordered'
         value={count}
         onChange={(e) => setCount(e.target.value)}
       />
@@ -80,7 +76,7 @@ const ActivityList = ({ setActivity, setActivityId }) => {
       <input
         type='text'
         placeholder='Type here'
-        className='input input-bordered w-full max-w-xs'
+        className='w-full max-w-xs input input-bordered'
         value={duration}
         onChange={(e) => setDuration(e.target.value)}
       /> */}
