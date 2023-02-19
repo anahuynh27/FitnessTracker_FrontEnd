@@ -154,7 +154,7 @@ const Routines = ({
                         return (
                           <button
                             className='inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative'
-                            onClick={() => handleActivityClick(ra.name)}
+                            onClick={() => handleActivityClick(ra.id)}
                             key={ra.id}
                           >
                             {ra.name}
