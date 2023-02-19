@@ -28,9 +28,18 @@ export const fetchAddActivity = async (name, description, token) => {
 };
 
 //PATCH /api/activities/:activityId (*)
-export const fetchUpdateActivity = async (name, description, activityId) => {
+export const fetchUpdateActivity = async (
+  token,
+  name,
+  description,
+  activityId
+) => {
   const res = await fetch(`${APRURL}/activities/${activityId}`, {
     method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: `${name}`,
       description: `${description}`,
