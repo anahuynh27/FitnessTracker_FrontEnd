@@ -45,9 +45,6 @@ const SingleUser = ({selectedUser }) => {
           <thead>
             <tr>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Name
-              </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Routine
               </th>
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
@@ -73,9 +70,6 @@ const SingleUser = ({selectedUser }) => {
                             .map((r) => {
                                 return (
                                     <tr key={r.id}>
-                                    <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-                                      {r.creatorName}
-                                    </td>
                                     <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                                       {r.name}
                                     </td>
