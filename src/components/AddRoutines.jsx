@@ -6,13 +6,13 @@ import ActivityList from './ActivityList';
 const AddRoutines = ({ token, setActivity, activity }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
-  const [count, setCount] = useState('');
-  const [duration, setDuration] = useState('');
+  const [count, setCount] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [activityId, setActivityId] = useState('');
   const [routineId, setRoutineId] = useState('');
   const [isPublic, setIsPublic] = useState(true);
   // console.log({ activity });
-  console.log({ activityId });
+  console.log({ activityId, routineId });
   console.log({ token });
 
   const history = useNavigate();
@@ -21,21 +21,36 @@ const AddRoutines = ({ token, setActivity, activity }) => {
     e.preventDefault();
     setName('');
     setGoal('');
+    // setCount(0);
+    // setDuration(0);
     const routine = await fetchAddRoutine(token, isPublic, name, goal);
     console.log({ routine });
     const rId = routine.id;
     setRoutineId(rId);
 
+    // if (routineId) {
+    //   console.log({ routineId, activityId, count, duration });
+    //   const attachActivity = await fetchAddActivitiesByRoutineId(
+    //     routineId,
+    //     activityId,
+    //     count,
+    //     duration
+    //   );
+    //   console.log({ attachActivity });
+    //   history('/myroutines');
+    // }
+
     // Promise.all([routine, activities]);
   };
 
   useEffect(() => {
-    if (routineId !== undefined) {
-      handleAttach(routineId);
+    console.log({ routineId, activityId, count, duration });
+    if (routineId !== '') {
+      handleAttach(routineId, activityId, count, duration);
     }
-  }, [routineId]);
+  }, [routineId, activityId]);
 
-  const handleAttach = async (routineId) => {
+  const handleAttach = async (routineId, activityId, count, duration) => {
     console.log({ routineId, activityId, count, duration });
     if (count !== '' && duration !== '') {
       const attachActivity = await fetchAddActivitiesByRoutineId(
@@ -53,15 +68,15 @@ const AddRoutines = ({ token, setActivity, activity }) => {
   return (
     <div className=''>
       <form onSubmit={handleSubmit}>
-        <div className='flex items-center justify-center space-x-5 my-6'>
-          <div className='form-control w-full max-w-xs items-center'>
+        <div className='flex items-center justify-center my-6 space-x-5'>
+          <div className='items-center w-full max-w-xs form-control'>
             <label className='label'>
               <span className='label-text'>Routine</span>
             </label>
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -72,7 +87,7 @@ const AddRoutines = ({ token, setActivity, activity }) => {
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               required
@@ -99,7 +114,7 @@ const AddRoutines = ({ token, setActivity, activity }) => {
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={count}
               onChange={(e) => setCount(e.target.value)}
             />
@@ -109,13 +124,13 @@ const AddRoutines = ({ token, setActivity, activity }) => {
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             />
 
             <div>
-              <button type='submit' className='btn m-6'>
+              <button type='submit' className='m-6 btn'>
                 submit
               </button>
               <Link to='/myroutines'>
