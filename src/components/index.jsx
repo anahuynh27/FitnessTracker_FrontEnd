@@ -10,3 +10,4 @@ export { default as EditRoutine } from './EditRoutine';
 export { default as ActivityList } from './ActivityList';
 export { default as AddRoutines } from './AddRoutines';
 export { default as SingleUser } from './SingleUser';
+export { default as SingleActivity } from './SingleActivity';

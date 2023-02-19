@@ -24,6 +24,7 @@ const App = () => {
   const [routineEdit, setRoutineEdit] = useState("");
   const [activity, setActivity] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
+  const [selectedActivity, setSelectedActivity] = useState("");
   const isLoggedIn = token !== "";
 
   console.log({ activity });
@@ -89,10 +90,13 @@ const App = () => {
                 />
               }
             />
-            {/* not sure if the route below is needed? */}
             <Route
               path="/:selectedUser/routines"
               element={<SingleUser selectedUser={selectedUser} />}
+            />
+            <Route
+              path="/:selectedActivity/routines"
+              element={<SingleActivity selectedActivity={selectedActivity} />}
             />
             <Route
               path="/edit"
