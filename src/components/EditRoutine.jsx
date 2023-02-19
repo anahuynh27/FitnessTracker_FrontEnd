@@ -51,7 +51,6 @@ const EditRoutine = ({ routineEdit, token }) => {
               type='checkbox'
               checked={isPublic}
               onChange={(event) => setIsPublic(event.target.checked)}
-              required
             />
             <div>
               <button type='submit' className='btn m-6'>
