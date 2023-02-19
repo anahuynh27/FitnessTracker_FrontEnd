@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchAllPublicRoutines } from '../api/api';
 
-const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedActivity}) => {
+const Routines = ({
+  selectedUser,
+  setSelectedUser,
+  selectedActivity,
+  setSelectedActivity,
+}) => {
   const [routines, setRoutines] = useState([]);
   const history = useNavigate();
   let { creatorName } = useParams();
@@ -28,15 +33,18 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
     console.log(creatorName);
     setSelectedUser(creatorName);
     history(`/${creatorName}/routines`);
-  }
+  };
 
   const handleActivityClick = (activityName) => {
     console.log(activityName);
     setSelectedActivity(activityName);
     history(`/${activityName}/routines`);
-  }
+  };
 
   return (
+    // ability to search
+    // click on activity stretch goal
+    // add a back button or view all button when clicking on a single user/activity
     <div>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
@@ -72,27 +80,28 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
                 <tr key={r.id}>
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
                     <button
-                      className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-900 whitespace-nowrap hover:text-pink-500 focus:relative"
-                      onClick={() => handleClick(r.creatorName)}>
+                      className='inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative'
+                      onClick={() => handleClick(r.creatorName)}
+                    >
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="h-4 w-4"
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth='1.5'
+                        stroke='currentColor'
+                        className='w-4 h-4'
                       >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'
+                        />
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+                        />
+                      </svg>
                       {r.creatorName}
                     </button>
                   </td>
@@ -104,18 +113,22 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
                   </td>
 
                   <td>
-                  {/* <button
-                    className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-900 whitespace-nowrap hover:text-pink-500 focus:relative"
+                    {/* <button
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative"
                     onClick={() => handleActivityClick(activityName)}
                   > */}
                     {r.activities.map((ra) => {
-                      return <button
-                      className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-900 whitespace-nowrap hover:text-pink-500 focus:relative"
-                      onClick={() => handleActivityClick(activityName)}
-                      key={ra.id}
-                      >{ra.name}</button>;
+                      return (
+                        <button
+                          className='inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative'
+                          onClick={() => handleActivityClick(ra.name)}
+                          key={ra.id}
+                        >
+                          {ra.name}
+                        </button>
+                      );
                     })}
-                  {/* </button> */}
+                    {/* </button> */}
                   </td>
 
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
