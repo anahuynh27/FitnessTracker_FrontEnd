@@ -14,6 +14,7 @@ import {
   EditRoutine,
   AddRoutines,
   SingleUser,
+  SingleActivity,
 } from "./components";
 import "./index.css";
 
@@ -67,6 +68,8 @@ const App = () => {
                 <Routines
                   selectedUser={selectedUser}
                   setSelectedUser={setSelectedUser}
+                  selectedActivity={selectedActivity}
+                  setSelectedActivity={setSelectedActivity}
                 />
               }
             />
