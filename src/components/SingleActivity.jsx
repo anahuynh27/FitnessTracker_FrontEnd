@@ -2,7 +2,22 @@ import React, {useState, useEffect} from 'react';
 import { fetchUsernameRoutines, fetchAllPublicRoutines } from '../api/api'
 
 const SingleActivity = ({selectedActivity }) => {
-    const [routines, setRoutines] = useState([]);
+  const [routines, setRoutines] = useState([]);
+  console.log({ selectedActivity });
+  
+  const allRoutines = async () => {
+    try {
+      const routines = await fetchAllPublicRoutines();
+      console.log({ routines });
+      setRoutines(routines);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleClick = () => {
+    history.back()
+  }
 
     return (
       <div>
@@ -12,7 +27,8 @@ const SingleActivity = ({selectedActivity }) => {
       <div className="text-center sm:text-left">
         <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
           You are now viewing routines pertaining to {selectedActivity}
-        </h1>
+                </h1>
+                <button className='btn btn-secondary btn-sm mt-5' onClick={handleClick}>Go Back</button>
       </div>
     </div>
   </div>
@@ -47,7 +63,7 @@ const SingleActivity = ({selectedActivity }) => {
             </thead>
                     
             <tbody>
-                        {routines.filter((r) => (r.creatorName === selectedActivity))
+                        {routines.filter((r) => (r.activities.name === selectedActivity))
                             .map((r) => {
                                 return (
                                     <tr key={r.id}>

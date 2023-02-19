@@ -9,7 +9,7 @@ const Routines = ({
   setSelectedActivity,
 }) => {
   const [routines, setRoutines] = useState([]);
-  const [search, setSearch] = ([]);
+  const [search, setSearch] = useState([]);
   const history = useNavigate();
   let { creatorName } = useParams();
   let { activityName } = useParams();
@@ -86,7 +86,7 @@ const Routines = ({
           </thead>
 
           <tbody className='divide-y divide-gray-200'>
-            {/* {routines.filter(r => {
+            {/* {routines.filter((r) => {
               if (search === "") {
                 return r;
               } else if (r.creatorName.toLowerCase().includes(search)) {

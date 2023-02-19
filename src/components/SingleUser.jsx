@@ -34,7 +34,7 @@ const SingleUser = ({selectedUser }) => {
         <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
           You are now viewing {selectedUser}'s routines
                 </h1>
-<button className='btn btn-secondary btn-sm' onClick={handleClick}>Go Back</button>
+<button className='btn btn-secondary btn-sm mt-5' onClick={handleClick}>Go Back</button>
       </div>
     </div>
   </div>
