@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  fetchUsernameRoutines,
-  fetchAddRoutine,
-  fetchDeleteRoutine,
-} from '../api/api';
+import { fetchUsernameRoutines, fetchDeleteRoutine } from '../api/api';
 
 const MyRoutines = ({ token, username, setRoutineEdit }) => {
   const [routines, setRoutines] = useState([]);
@@ -22,21 +18,6 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
     }
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   setGoal('');
-  //   setName('');
-
-  //   try {
-  //     const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
-  //     getMyRoutines();
-  //     setMessage(`Routine ${addRoutine.name} added successfully!`);
-  //   } catch (error) {
-  //     setMessage(error.message);
-  //     console.error('error in handle Submit', error);
-  //   }
-  // };
-
   const handleDelete = async (routineId, token) => {
     console.log(routineId);
     console.log(token);
@@ -48,8 +29,6 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
       console.error('error deleting');
     }
   };
-
-  console.log({ routines });
 
   return (
     <div>
