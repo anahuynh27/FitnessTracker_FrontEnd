@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { fetchAllActivities, fetchAddActivitiesByRoutineId } from '../api/api';
+import { fetchAllActivities } from '../api/api';
 const ActivityList = ({ setActivity, setActivityId }) => {
   const [activities, setActivities] = useState([]);
   const [sendActivityId, setSendActivityId] = useState(0);
 
   const allActivities = async () => {
     const allActivities = await fetchAllActivities();
-    console.log({ allActivities });
     setActivity(allActivities);
     setActivities(allActivities);
   };
@@ -22,25 +20,6 @@ const ActivityList = ({ setActivity, setActivityId }) => {
     setSendActivityId(e.target.value);
     setActivityId(e.target.value);
   };
-  console.log({ sendActivityId });
-
-  // useEffect(() => {
-  //   if ((routineId, count, duration)) {
-  //     attachActivity();
-  //   }
-  // }, [routineId, count, duration]);
-
-  // const attachActivity = async () => {
-  //   console.log({ routineId, activityId, count, duration });
-  //   const activities = await fetchAddActivitiesByRoutineId(
-  //     routineId,
-  //     activityId,
-  //     count,
-  //     duration
-  //   ); //map addActivity array run fetch for each same routine id,  unique activity id, count and duration
-  //   console.log({ activities });
-  //   history('/myroutines');
-  // };
 
   return (
     <div>
