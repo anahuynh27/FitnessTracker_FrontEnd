@@ -30,6 +30,7 @@ const App = () => {
 
   console.log({ activity });
   console.log({ selectedUser });
+  console.log({ selectedActivity });
 
   const history = useNavigate();
   const me = async () => {

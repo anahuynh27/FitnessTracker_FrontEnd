@@ -4,8 +4,6 @@ import { fetchUsernameRoutines, fetchAllPublicRoutines } from '../api/api'
 const SingleActivity = ({selectedActivity }) => {
     const [routines, setRoutines] = useState([]);
 
-
-
     return (
       <div>
         <header aria-label="Page Header">

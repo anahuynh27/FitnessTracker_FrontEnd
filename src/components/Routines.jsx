@@ -6,10 +6,13 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
   const [routines, setRoutines] = useState([]);
   const history = useNavigate();
   let { creatorName } = useParams();
+  let { activityName } = useParams();
+  console.log(selectedActivity);
+  console.log(activityName);
 
   useEffect(() => {
     allRoutines();
-  }, [selectedUser]);
+  }, [selectedUser, selectedActivity]);
 
   const allRoutines = async () => {
     try {
@@ -21,10 +24,16 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
     }
   };
 
-  const handleClick = async (creatorName) => {
+  const handleClick = (creatorName) => {
     console.log(creatorName);
     setSelectedUser(creatorName);
     history(`/${creatorName}/routines`);
+  }
+
+  const handleActivityClick = (activityName) => {
+    console.log(activityName);
+    setSelectedActivity(activityName);
+    history(`/${activityName}/routines`);
   }
 
   return (
@@ -93,11 +102,22 @@ const Routines = ({selectedUser, setSelectedUser, selectedActivity, setSelectedA
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {r.goal}
                   </td>
-                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+
+                  <td>
+                  {/* <button
+                    className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-900 whitespace-nowrap hover:text-pink-500 focus:relative"
+                    onClick={() => handleActivityClick(activityName)}
+                  > */}
                     {r.activities.map((ra) => {
-                      return <span key={ra.id}>{ra.name}</span>;
+                      return <button
+                      className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-900 whitespace-nowrap hover:text-pink-500 focus:relative"
+                      onClick={() => handleActivityClick(activityName)}
+                      key={ra.id}
+                      >{ra.name}</button>;
                     })}
+                  {/* </button> */}
                   </td>
+
                   <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                     {r.activities.map((ra) => {
                       return <span key={ra.id}>{ra.description}</span>;
