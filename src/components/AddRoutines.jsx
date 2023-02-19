@@ -97,7 +97,7 @@ const AddRoutines = ({ token, setActivity }) => {
               <span className='label-text'>Count</span>
             </label>
             <input
-              type='text'
+              type='number'
               placeholder='Type here'
               className='w-full max-w-xs input input-bordered'
               value={count}
@@ -107,7 +107,7 @@ const AddRoutines = ({ token, setActivity }) => {
               <span className='label-text'>Duration</span>
             </label>
             <input
-              type='text'
+              type='number'
               placeholder='Type here'
               className='w-full max-w-xs input input-bordered'
               value={duration}
