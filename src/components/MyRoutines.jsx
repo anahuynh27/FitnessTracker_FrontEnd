@@ -33,14 +33,15 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
   return (
     <div>
       {/*
-      center this create routine button
       probably add ability to search own routines
       map activites that were added
       edit routine should update new activity, count, and duration (fetchUpdateRA) ** put in EditRoutine
       remove activity from routine. (fetchDeleteRA) ** put in EditRoutine
       */}
       <Link to='/add'>
-        <button className='btn btn-secondary btn-sm'>Create Routine</button>
+        <span  className="flex justify-center">
+        <button className="btn btn-secondary btn-sm">Create Routine</button>
+        </span>
       </Link>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
