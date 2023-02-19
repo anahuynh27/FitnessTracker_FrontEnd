@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchUsernameRoutines, fetchAllPublicRoutines } from '../api/api'
 
 const SingleUser = ({selectedUser }) => {
     const [routines, setRoutines] = useState([]);
     const [usersRoutines, setUsersRoutines] = useState([]);
-    console.log({selectedUser});
+  console.log({ selectedUser });
 
     useEffect(() => {
         allRoutines();
@@ -20,6 +21,9 @@ const SingleUser = ({selectedUser }) => {
           console.error('error all Routines function', error);
         }
       };
+  const handleClick = () => {
+    history.back()
+  }
 
     return (
       <div>
@@ -29,7 +33,8 @@ const SingleUser = ({selectedUser }) => {
       <div className="text-center sm:text-left">
         <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
           You are now viewing {selectedUser}'s routines
-        </h1>
+                </h1>
+<button className='btn btn-secondary btn-sm' onClick={handleClick}>Go Back</button>
       </div>
     </div>
   </div>
