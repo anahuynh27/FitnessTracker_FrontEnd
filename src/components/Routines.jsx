@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchAllPublicRoutines } from '../api/api';
 
 const Routines = ({
@@ -9,6 +9,7 @@ const Routines = ({
   setSelectedActivity,
 }) => {
   const [routines, setRoutines] = useState([]);
+  const [search, setSearch] = ([]);
   const history = useNavigate();
   let { creatorName } = useParams();
   let { activityName } = useParams();
@@ -46,6 +47,16 @@ const Routines = ({
     // click on activity stretch goal
     // add a back button or view all button when clicking on a single user/activity
     <div>
+      {<form
+        className='flex justify-center'
+        onSubmit={(event) => (event.preventDefault())}>
+        <input
+          className='input input-bordered input-secondary w-full max-w-xs'
+          value={search}
+          placeholder='search bar'
+          onChange={(event) => { setSearch(event.target.value) }} />
+      </form>}
+
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
@@ -75,6 +86,17 @@ const Routines = ({
           </thead>
 
           <tbody className='divide-y divide-gray-200'>
+            {routines.filter(r => {
+              if (search === "") {
+                return r;
+              } else if (r.creatorName.toLowerCase().includes(search)) {
+                return r.creatorName;
+              } else if (r.name.toLowerCase().includes(search)) {
+                return r.name;
+              } else if (r.goal.toLowerCase().includes(search)) {
+                return r.goal;
+              } 
+            })}
             {routines.map((r) => {
               return (
                 <tr key={r.id}>

@@ -48,7 +48,7 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
         className='mt-6 px-5 flex justify-center'
         onSubmit={(event) => (event.preventDefault())}>
       <input
-        className='search-bar'
+        className='input input-bordered input-secondary w-full max-w-xs'
         value={search}
         placeholder="search bar"
       onChange={(event) => {setSearch(event.target.value)}} />
