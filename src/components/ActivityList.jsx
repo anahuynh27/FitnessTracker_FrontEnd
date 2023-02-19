@@ -34,27 +34,6 @@ const ActivityList = ({ setActivity, setActivityId }) => {
           </option>
         ))}
       </select>
-      {/* 
-      <label className='label'>
-        <span className='label-text'>Count</span>
-      </label>
-      <input
-        type='text'
-        placeholder='Type here'
-        className='w-full max-w-xs input input-bordered'
-        value={count}
-        onChange={(e) => setCount(e.target.value)}
-      />
-      <label className='label'>
-        <span className='label-text'>Duration</span>
-      </label>
-      <input
-        type='text'
-        placeholder='Type here'
-        className='w-full max-w-xs input input-bordered'
-        value={duration}
-        onChange={(e) => setDuration(e.target.value)}
-      /> */}
     </div>
   );
 };
