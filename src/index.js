@@ -91,7 +91,7 @@ const App = () => {
             />
             {/* not sure if the route below is needed? */}
             <Route
-              path={`/${selectedUser}/routines`}
+              path="/:selectedUser/routines"
               element={<SingleUser selectedUser={selectedUser} />}
             />
             <Route

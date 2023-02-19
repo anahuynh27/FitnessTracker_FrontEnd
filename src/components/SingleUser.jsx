@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { fetchUsernameRoutines, fetchAllPublicRoutines } from '../api/api'
 
-//create a button on Routines.js names so when users click on the name, routes them here
-//somehow, pass in that clicked username to here
-//fetchUsernameRoutines errors due to token malformation
-//use fetchAllPublicRoutines to then filter to one user?
-
-
 const SingleUser = ({selectedUser }) => {
     const [routines, setRoutines] = useState([]);
     const [usersRoutines, setUsersRoutines] = useState([]);
@@ -14,7 +8,6 @@ const SingleUser = ({selectedUser }) => {
 
     useEffect(() => {
         allRoutines();
-        // oneRoutines();
     }, []);
   useEffect(() => {}, [selectedUser])
     
@@ -27,16 +20,6 @@ const SingleUser = ({selectedUser }) => {
           console.error('error all Routines function', error);
         }
       };
-    
-    // const oneRoutines = async () => {
-    //     try {
-    //         const users = await fetchUsernameRoutines(token, username);
-    //         console.log({ users });
-    //         setUsersRoutines(users)
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     return (
     <div>

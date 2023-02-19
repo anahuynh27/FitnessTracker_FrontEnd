@@ -108,7 +108,7 @@ Routines
 
 As any user on the Routines tab, I want to:
 
-    be able to click on a username (shown as a Routine creator), and see a list of all of their public routines
+    be able to click on a username (shown as a Routine creator), and see a list of all of their public routines ✔️
     be able to click on an activity name (shown in a list of activities on a routine), and see a list of all public routines which feature it
 
 As a registered user, on the My Routines tab, I want to:
