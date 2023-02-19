@@ -38,7 +38,7 @@ const Routines = ({
   const handleActivityClick = (activityName) => {
     console.log(activityName);
     setSelectedActivity(activityName);
-    history(`/${activityName}/routines`);
+    history(`/${activityName}/activities`);
   };
 
   return (

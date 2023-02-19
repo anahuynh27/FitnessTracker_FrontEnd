@@ -4,6 +4,7 @@ import { fetchUsernameRoutines, fetchDeleteRoutine } from '../api/api';
 
 const MyRoutines = ({ token, username, setRoutineEdit }) => {
   const [routines, setRoutines] = useState([]);
+  const [search, setSearch] = useState([]);
 
   useEffect(() => {
     getMyRoutines();
@@ -33,16 +34,27 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
   return (
     <div>
       {/*
-      probably add ability to search own routines
       map activites that were added
       edit routine should update new activity, count, and duration (fetchUpdateRA) ** put in EditRoutine
       remove activity from routine. (fetchDeleteRA) ** put in EditRoutine
       */}
-      <Link to='/add'>
         <span  className="flex justify-center">
-        <button className="btn btn-secondary btn-sm">Create Routine</button>
-        </span>
+      <Link to='/add'>
+        <button className="btn btn-secondary btn-sm ">Create Routine</button>
       </Link>
+      </span>
+      
+      {<form
+        className='mt-6 px-5 flex justify-center'
+        onSubmit={(event) => (event.preventDefault())}>
+      <input
+        className='search-bar'
+        value={search}
+        placeholder="search bar"
+      onChange={(event) => {setSearch(event.target.value)}} />
+      </form>
+      }
+      
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
@@ -59,46 +71,52 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
             </tr>
           </thead>
 
-          <tbody className='divide-y divide-gray-200'>
-            {routines?.map((r) => {
-              return (
-                <tr key={r.id}>
-                  <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-                    {r.name}
-                  </td>
-                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                    {r.goal}
-                  </td>
-                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                    {r.isPublic.toString()}
-                  </td>
-                  <td>
-                    <Link to='/edit'>
-                      <button
-                        htmlFor='my-modal'
-                        className='btn btn-sm'
-                        onClick={() => setRoutineEdit(r)}
-                      >
-                        edit
-                      </button>
-                    </Link>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        handleDelete(r.id, token);
-                      }}
-                      className='btn btn-sm'
-                    >
-                      delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+    <tbody className='divide-y divide-gray-200'>
+      {routines.filter(r => {
+        if (search === "") {
+          return r;
+        } else if (r.name.toLowerCase().includes(search)) {
+          return r.name;
+        } else if (r.goal.toLowerCase().includes(search)) {
+          return r.goal;
+        }
+      })?.map((r) => {
+        return (
+          <tr key={r.id}>
+            <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
+              {r.name}
+            </td>
+            <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+              {r.goal}
+            </td>
+            <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+              {r.isPublic.toString()}
+            </td>
+            <td>
+              <Link to='/edit'>
+                <button
+                  htmlFor='my-modal'
+                  className='btn btn-sm'
+                  onClick={() => setRoutineEdit(r)}>
+                  edit
+                </button>
+              </Link>
+            </td>
+            <td>
+              <button
+                onClick={() => {
+                  handleDelete(r.id, token);
+                }}
+                className='btn btn-sm'>
+                delete
+              </button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
     </div>
   );
 };

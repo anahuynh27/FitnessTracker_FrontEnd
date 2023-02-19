@@ -11,7 +11,7 @@ const SingleActivity = ({selectedActivity }) => {
     <div className="sm:flex sm:items-center sm:justify-between">
       <div className="text-center sm:text-left">
         <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-          You are now viewing routines pertaing to {selectedActivity}
+          You are now viewing routines pertaining to {selectedActivity}
         </h1>
       </div>
     </div>
