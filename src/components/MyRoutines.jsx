@@ -5,14 +5,9 @@ import {
   fetchAddRoutine,
   fetchDeleteRoutine,
 } from '../api/api';
-import ActivityList from './ActivityList';
 
 const MyRoutines = ({ token, username, setRoutineEdit }) => {
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
-  const [isPublic, setIsPublic] = useState(false);
   const [routines, setRoutines] = useState([]);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     getMyRoutines();
@@ -27,20 +22,20 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setGoal('');
-    setName('');
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   setGoal('');
+  //   setName('');
 
-    try {
-      const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
-      getMyRoutines();
-      setMessage(`Routine ${addRoutine.name} added successfully!`);
-    } catch (error) {
-      setMessage(error.message);
-      console.error('error in handle Submit', error);
-    }
-  };
+  //   try {
+  //     const addRoutine = await fetchAddRoutine(token, isPublic, name, goal);
+  //     getMyRoutines();
+  //     setMessage(`Routine ${addRoutine.name} added successfully!`);
+  //   } catch (error) {
+  //     setMessage(error.message);
+  //     console.error('error in handle Submit', error);
+  //   }
+  // };
 
   const handleDelete = async (routineId, token) => {
     console.log(routineId);
@@ -58,44 +53,8 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
 
   return (
     <div>
-      {/* <form onSubmit={handleSubmit}>
-        <div className='flex items-center justify-center space-x-5'>
-          <label className='text-xs font-medium text-gray-700 '>Routine:</label>
-          <input
-            className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
-            type='text'
-            name='name'
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            required
-          />
-          <label className='text-xs font-medium text-gray-700 '>Goal:</label>
-          <input
-            className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
-            type='text'
-            name='goal'
-            value={goal}
-            onChange={(event) => setGoal(event.target.value)}
-            required
-          />
-          <label className='text-xs font-medium text-gray-700 '>Public?</label>
-          <input
-            className='checkbox checkbox-info checkbox-sm'
-            type='checkbox'
-            checked={isPublic}
-            onChange={(event) => setIsPublic(event.target.checked)}
-          />
-          <button className='btn btn-secondary btn-sm' type='submit'>
-            Submit Routine
-          </button>
-        </div>
-        <span className='flex items-center justify-center text-pink-500'>
-          {message}
-        </span>
-        <ActivityList />
-      </form> */}
       <Link to='/add'>
-      <button className='btn btn-secondary btn-sm'>Create Routine</button>
+        <button className='btn btn-secondary btn-sm'>Create Routine</button>
       </Link>
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
