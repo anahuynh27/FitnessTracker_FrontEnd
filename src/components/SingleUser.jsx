@@ -22,7 +22,19 @@ const SingleUser = ({selectedUser }) => {
       };
 
     return (
-    <div>
+      <div>
+        <header aria-label="Page Header">
+  <div class="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <div class="text-center sm:text-left">
+        <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">
+          You are now viewing {selectedUser}'s routines
+        </h1>
+      </div>
+    </div>
+  </div>
+        </header>
+        
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
