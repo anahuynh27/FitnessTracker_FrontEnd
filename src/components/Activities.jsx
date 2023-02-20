@@ -4,6 +4,7 @@ import { fetchAllActivities, fetchAddActivity } from '../api/api';
 const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);
   const [name, setName] = useState('');
+  const [search, setSearch] = useState([]);
   const [description, setDescription] = useState('');
   const [message, setMessage] = useState('');
 
@@ -48,7 +49,7 @@ const Activities = ({ token }) => {
               Activity:
             </label>
             <input
-              className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
+              className='mt-1 input input-bordered input-secondary sm:text-md'
               type='text'
               name='name'
               value={name}
@@ -59,7 +60,7 @@ const Activities = ({ token }) => {
               Description:
             </label>
             <input
-              className='mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
+              className='mt-1 input input-bordered input-secondary sm:text-md'
               type='text'
               name='description'
               value={description}
@@ -70,6 +71,19 @@ const Activities = ({ token }) => {
               Submit Activity
             </button>
           </div>
+          <form
+            className='flex justify-center px-5 my-3'
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <input
+              className='w-full max-w-xs input input-bordered input-secondary'
+              value={search}
+              placeholder='search'
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+            />
+          </form>
           <span className='flex items-center justify-center text-pink-500'>
             {message}
           </span>
@@ -88,18 +102,28 @@ const Activities = ({ token }) => {
             </tr>
           </thead>
           <tbody className='divide-y divide-gray-200'>
-            {activities.map((a) => {
-              return (
-                <tr key={a.id}>
-                  <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-                    {a.name}
-                  </td>
-                  <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                    {a.description}
-                  </td>
-                </tr>
-              );
-            })}
+            {activities
+              .filter((a) => {
+                if (search === '') {
+                  return a;
+                } else if (a.name.toLowerCase().includes(search)) {
+                  return a.name;
+                } else if (a.description.toLowerCase().includes(search)) {
+                  return a.description;
+                }
+              })
+              .map((a) => {
+                return (
+                  <tr key={a.id}>
+                    <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
+                      {a.name}
+                    </td>
+                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                      {a.description}
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
