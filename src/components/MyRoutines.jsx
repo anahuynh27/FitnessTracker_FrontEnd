@@ -68,6 +68,15 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 public
               </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                activity
+              </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                count
+              </th>
+              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
+                duration
+              </th>
             </tr>
           </thead>
 
@@ -92,6 +101,29 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
             <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
               {r.isPublic.toString()}
             </td>
+            
+            <td>
+            {r.activities.map((ra) => {
+              return (
+                <span key={ra.id}>{ra.name}</span>
+              )
+            })}
+            </td>
+            <td>
+            {r.activities.map((ra) => {
+              return (
+                <span key={ra.id}>{ra.count}</span>
+              )
+            })}
+            </td>
+            <td>
+            {r.activities.map((ra) => {
+              return (
+                <span key={ra.id}>{ra.duration}</span>
+              )
+            })}
+              </td>
+
             <td>
               <Link to='/edit'>
                 <button

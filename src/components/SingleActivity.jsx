@@ -1,29 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {
-  fetchGetRoutinesByActivityId,
-  fetchAllPublicRoutines,
-} from '../api/api';
+import {fetchGetRoutinesByActivityId} from '../api/api';
 
 const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
-  // const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   console.log({ selectedActivity });
   console.log({ activities });
 
   useEffect(() => {
-    // allRoutines();
     singleActivity();
   }, [selectedActivity, selectedActivityId]);
-
-  // const allRoutines = async () => {
-  //   try {
-  //     const routines = await fetchAllPublicRoutines();
-  //     console.log({ routines });
-  //     setRoutines(routines);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const singleActivity = async () => {
     try {
@@ -69,21 +54,6 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
               <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
                 Routine
               </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Goal
-              </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Activities
-              </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Description
-              </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Count
-              </th>
-              <th className='px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap'>
-                Duration
-              </th>
             </tr>
           </thead>
 
@@ -91,55 +61,20 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
             {activities.map((a) => {
               return (
                 <tr key={a.id}>
-                  <td>
-                    {a.activities.map((aa) => {
-                      return <span key={aa.id}>{aa.name}</span>;
-                    })}
-                  </td>
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
                     {a.creatorName}
                   </td>
+                  <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
+                    {a.name}
+                  </td>
+                  {/* <td>
+                    {a.activities.map((aa) => {
+                      return <span key={aa.id}>{aa.name}</span>;
+                    })}
+                  </td> */}
                 </tr>
               );
             })}
-
-            {/* {routines
-              .filter((r) => r.activities.name === selectedActivity)
-              .map((r) => {
-                return (
-                  <tr key={r.id}>
-                    <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-                      {r.creatorName}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.name}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.goal}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.activities.map((ra) => {
-                        return <span key={ra.id}>{ra.name}</span>;
-                      })}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.activities.map((ra) => {
-                        return <span key={ra.id}>{ra.description}</span>;
-                      })}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.activities.map((ra) => {
-                        return <span key={ra.id}>{ra.count}</span>;
-                      })}
-                    </td>
-                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-                      {r.activities.map((ra) => {
-                        return <span key={ra.id}>{ra.duration}</span>;
-                      })}
-                    </td>
-                  </tr>
-                );
-              })} */}
           </tbody>
         </table>
       </div>
