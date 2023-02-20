@@ -11,7 +11,6 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
   }, [username]);
 
   const getMyRoutines = async () => {
-    console.log({ username });
     if (username) {
       const myRoutines = await fetchUsernameRoutines(token, username);
       setRoutines(myRoutines);

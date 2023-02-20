@@ -156,9 +156,7 @@ export const fetchDeleteRoutine = async (routineId, token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(res);
   const json = res.json();
-  console.log(json);
   return json;
 };
 
