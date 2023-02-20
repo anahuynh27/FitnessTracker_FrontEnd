@@ -18,7 +18,6 @@ const Login = ({ setToken }) => {
         setMessage('username or password incorrect');
       }
       const login = await fetchLogin(username, password);
-      console.log({ login });
       if (login.error) {
         setMessage('Invalid username or password, please try again');
       } else {
@@ -27,7 +26,7 @@ const Login = ({ setToken }) => {
         history('/activities');
       }
     } catch (error) {
-      console.error('error login fn', error);
+      console.error(error);
     }
   };
   return (
@@ -39,7 +38,6 @@ const Login = ({ setToken }) => {
             src='https://images.pexels.com/photos/903171/pexels-photo-903171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
             className='absolute inset-0 object-cover w-full h-full opacity-80'
           />
-
           <div className='hidden lg:relative lg:block lg:p-12'>
             <a className='block text-white' href='/'>
               <span className='sr-only'>Home</span>
@@ -55,17 +53,14 @@ const Login = ({ setToken }) => {
                 />
               </svg>
             </a>
-
             <h2 className='mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl'>
               Login to fitness trackr
             </h2>
-
             <p className='mt-4 leading-relaxed text-white/90'>
               Welcome back to fitness trackr
             </p>
           </div>
         </section>
-
         <main
           aria-label='Main'
           className='flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6'
@@ -89,7 +84,6 @@ const Login = ({ setToken }) => {
                   />
                 </svg>
               </a>
-
               <h1 className='mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl'>
                 Login to fitness trackr
               </h1>
@@ -126,7 +120,6 @@ const Login = ({ setToken }) => {
                 >
                   Username
                 </label>
-
                 <input
                   type='text'
                   name='first_name'
@@ -136,7 +129,6 @@ const Login = ({ setToken }) => {
                   className='w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm'
                 />
               </div>
-
               <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='password'
@@ -144,7 +136,6 @@ const Login = ({ setToken }) => {
                 >
                   Password
                 </label>
-
                 <input
                   type='password'
                   name='password'
@@ -154,7 +145,6 @@ const Login = ({ setToken }) => {
                   className='w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm'
                 />
               </div>
-
               <div className='col-span-6 sm:flex sm:items-center sm:gap-4'>
                 <button
                   className='inline-block px-12 py-3 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'

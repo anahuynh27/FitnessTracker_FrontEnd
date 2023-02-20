@@ -11,7 +11,6 @@ const Homepage = ({ token }) => {
               <h2 className='text-2xl font-bold text-white md:text-3xl'>
                 Welcome to fitness trackr
               </h2>
-
               <p className='hidden text-white/90 sm:mt-4 sm:block'>
                 We're dedicated to helping you achieve your fitness goals and
                 live a healthy, active lifestyle. Our website provides a
@@ -40,14 +39,12 @@ const Homepage = ({ token }) => {
               )}
             </div>
           </div>
-
           <div className='grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2'>
             <img
               alt='Student'
               src='https://images.pexels.com/photos/4720754/pexels-photo-4720754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
               className='object-cover w-full h-40 sm:h-56 md:h-full'
             />
-
             <img
               alt='Student'
               src='https://images.pexels.com/photos/4753990/pexels-photo-4753990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
