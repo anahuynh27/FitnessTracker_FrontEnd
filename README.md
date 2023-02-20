@@ -31,11 +31,11 @@ As an instructor I want to see you demonstrate mastery (when appropriate) of:
 
 As an engineering manager I want to see code that:
 
-    is cleanly written, in separate files with a singular goal when possible
-    has no unused functions or variables
-    has expressive variable, function, and class names
-    is organized into a coherent flow
-    uses as many files as necessary to keep code compartmentalized and readable
+    is cleanly written, in separate files with a singular goal when possible ✔️
+    has no unused functions or variables ✔️
+    has expressive variable, function, and class names ✔️
+    is organized into a coherent flow ✔️
+    uses as many files as necessary to keep code compartmentalized and readable ✔️
 
 FitnessTrac.kr: React Front-End Specific Requirements (70%)
 MVP (Main Goals)
@@ -44,9 +44,9 @@ Routes
 
 As any user when browsing the app, I want to
 
-    click links/tabs that display different parts of the app. ** ✔️
+    click links/tabs that display different parts of the app. ✔️
     see the route I am visiting in the url bar (i.e. Routines tab should have a route https://example.com/routines) ✔️
-    stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh) ** ✔️
+    stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh) ✔️
     see Components/Tabs with corresponding routes:
         Home ✔️
         Routines ✔️
