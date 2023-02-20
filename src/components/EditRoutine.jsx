@@ -23,21 +23,21 @@ const EditRoutine = ({ routineEdit, token }) => {
 
   const handleAttachEdit = async () => {
     await fetchUpdateRA(count, duration, routineActivityId, token);
-    history("/myroutines");
-  }
+    history('/myroutines');
+  };
 
   return (
     <div className=''>
       <form onSubmit={handleSubmit}>
-        <div className='flex items-center justify-center space-x-5 my-6'>
-          <div className='form-control w-full max-w-xs items-center'>
+        <div className='flex items-center justify-center my-6 space-x-5'>
+          <div className='items-center w-full max-w-xs form-control'>
             <label className='label'>
               <span className='label-text'>Routine</span>
             </label>
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -47,12 +47,14 @@ const EditRoutine = ({ routineEdit, token }) => {
             <input
               type='text'
               placeholder='Type here'
-              className='input input-bordered w-full max-w-xs'
+              className='w-full max-w-xs input input-bordered'
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               required
             />
-            <span className='mt-5'>Activity: {routineEdit.activities[0].name}</span>
+            <span className='mt-5'>
+              Activity: {routineEdit.activities[0].name}
+            </span>
             <label className='label'>
               <span className='label-text'>Count</span>
             </label>
@@ -73,7 +75,9 @@ const EditRoutine = ({ routineEdit, token }) => {
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             />
-            <label className='text-xs font-medium text-gray-700 my-3'>Public</label>
+            <label className='my-3 text-xs font-medium text-gray-700'>
+              Public
+            </label>
             <input
               className='checkbox checkbox-info checkbox-sm'
               type='checkbox'
@@ -81,7 +85,7 @@ const EditRoutine = ({ routineEdit, token }) => {
               onChange={(event) => setIsPublic(event.target.checked)}
             />
             <div>
-              <button type='submit' className='btn m-6'>
+              <button type='submit' className='m-6 btn'>
                 submit
               </button>
               <Link to='/myroutines'>

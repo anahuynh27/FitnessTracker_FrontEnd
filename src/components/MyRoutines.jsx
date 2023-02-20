@@ -14,17 +14,13 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
     console.log({ username });
     if (username) {
       const myRoutines = await fetchUsernameRoutines(token, username);
-      console.log({ myRoutines });
       setRoutines(myRoutines);
     }
   };
 
   const handleDelete = async (routineId, token) => {
-    console.log(routineId);
-    console.log(token);
     try {
-      const deleteRoutine = await fetchDeleteRoutine(routineId, token);
-      console.log(deleteRoutine);
+      await fetchDeleteRoutine(routineId, token);
       getMyRoutines();
     } catch (error) {
       console.error('error deleting');
@@ -33,28 +29,26 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
 
   return (
     <div>
-      {/*
-      map activites that were added
-      edit routine should update new activity, count, and duration (fetchUpdateRA) ** put in EditRoutine
-      remove activity from routine. (fetchDeleteRA) ** put in EditRoutine
-      */}
-        <span  className="flex justify-center">
-      <Link to='/add'>
-        <button className="btn btn-secondary btn-sm ">Create Routine</button>
-      </Link>
+      <span className='flex justify-center'>
+        <Link to='/add'>
+          <button className='btn btn-secondary btn-sm '>Create Routine</button>
+        </Link>
       </span>
-      
-      {<form
-        className='mt-6 px-5 flex justify-center'
-        onSubmit={(event) => (event.preventDefault())}>
-      <input
-        className='input input-bordered input-secondary w-full max-w-xs'
-        value={search}
-        placeholder="search"
-      onChange={(event) => {setSearch(event.target.value)}} />
-      </form>
+      {
+        <form
+          className='flex justify-center px-5 mt-6'
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <input
+            className='w-full max-w-xs input input-bordered input-secondary'
+            value={search}
+            placeholder='search'
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+        </form>
       }
-      
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
@@ -79,76 +73,71 @@ const MyRoutines = ({ token, username, setRoutineEdit }) => {
               </th>
             </tr>
           </thead>
-
-    <tbody className='divide-y divide-gray-200'>
-      {routines.filter(r => {
-        if (search === "") {
-          return r;
-        } else if (r.name.toLowerCase().includes(search)) {
-          return r.name;
-        } else if (r.goal.toLowerCase().includes(search)) {
-          return r.goal;
-        }
-      })?.map((r) => {
-        return (
-          <tr key={r.id}>
-            <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
-              {r.name}
-            </td>
-            <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-              {r.goal}
-            </td>
-            <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
-              {r.isPublic.toString()}
-            </td>
-            
-            <td>
-            {r.activities.map((ra) => {
-              return (
-                <span key={ra.id}>{ra.name}</span>
-              )
-            })}
-            </td>
-            <td>
-            {r.activities.map((ra) => {
-              return (
-                <span key={ra.id}>{ra.count}</span>
-              )
-            })}
-            </td>
-            <td>
-            {r.activities.map((ra) => {
-              return (
-                <span key={ra.id}>{ra.duration}</span>
-              )
-            })}
-              </td>
-
-            <td>
-              <Link to='/edit'>
-                <button
-                  htmlFor='my-modal'
-                  className='btn btn-sm'
-                  onClick={() => setRoutineEdit(r)}>
-                  edit
-                </button>
-              </Link>
-            </td>
-            <td>
-              <button
-                onClick={() => {
-                  handleDelete(r.id, token);
-                }}
-                className='btn btn-sm'>
-                delete
-              </button>
-            </td>
-          </tr>
-        );
-      })}
-    </tbody>
-  </table>
-</div>
+          <tbody className='divide-y divide-gray-200'>
+            {routines
+              .filter((r) => {
+                if (search === '') {
+                  return r;
+                } else if (r.name.toLowerCase().includes(search)) {
+                  return r.name;
+                } else if (r.goal.toLowerCase().includes(search)) {
+                  return r.goal;
+                }
+              })
+              ?.map((r) => {
+                return (
+                  <tr key={r.id}>
+                    <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
+                      {r.name}
+                    </td>
+                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                      {r.goal}
+                    </td>
+                    <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
+                      {r.isPublic.toString()}
+                    </td>
+                    <td>
+                      {r.activities.map((ra) => {
+                        return <span key={ra.id}>{ra.name}</span>;
+                      })}
+                    </td>
+                    <td>
+                      {r.activities.map((ra) => {
+                        return <span key={ra.id}>{ra.count}</span>;
+                      })}
+                    </td>
+                    <td>
+                      {r.activities.map((ra) => {
+                        return <span key={ra.id}>{ra.duration}</span>;
+                      })}
+                    </td>
+                    <td>
+                      <Link to='/edit'>
+                        <button
+                          htmlFor='my-modal'
+                          className='btn btn-sm'
+                          onClick={() => setRoutineEdit(r)}
+                        >
+                          edit
+                        </button>
+                      </Link>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          handleDelete(r.id, token);
+                        }}
+                        className='btn btn-sm'
+                      >
+                        delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

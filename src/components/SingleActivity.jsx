@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {fetchGetRoutinesByActivityId} from '../api/api';
+import { fetchGetRoutinesByActivityId } from '../api/api';
 
 const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
   const [activities, setActivities] = useState([]);
-  console.log({ selectedActivity });
-  console.log({ activities });
 
   useEffect(() => {
     singleActivity();
@@ -13,7 +11,6 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
   const singleActivity = async () => {
     try {
       const activity = await fetchGetRoutinesByActivityId(selectedActivityId);
-      console.log({ activities });
       setActivities(activity);
     } catch (error) {
       console.error(error);
@@ -27,14 +24,14 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
   return (
     <div>
       <header aria-label='Page Header'>
-        <div className='mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8'>
+        <div className='max-w-screen-xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8'>
           <div className='sm:flex sm:items-center sm:justify-between'>
             <div className='text-center sm:text-left'>
               <h1 className='text-2xl font-bold text-gray-900 sm:text-3xl'>
                 You are now viewing routines pertaining to {selectedActivity}
               </h1>
               <button
-                className='btn btn-secondary btn-sm mt-5'
+                className='mt-5 btn btn-secondary btn-sm'
                 onClick={handleClick}
               >
                 Go Back
@@ -43,7 +40,6 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
           </div>
         </div>
       </header>
-
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
@@ -56,7 +52,6 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
               </th>
             </tr>
           </thead>
-
           <tbody>
             {activities.map((a) => {
               return (
@@ -67,11 +62,6 @@ const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
                     {a.name}
                   </td>
-                  {/* <td>
-                    {a.activities.map((aa) => {
-                      return <span key={aa.id}>{aa.name}</span>;
-                    })}
-                  </td> */}
                 </tr>
               );
             })}

@@ -89,11 +89,11 @@ const Login = ({ setToken }) => {
               </h1>
             </div>
             {message && (
-              <div className='alert alert-error shadow-lg'>
+              <div className='shadow-lg alert alert-error'>
                 <div>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='stroke-current flex-shrink-0 h-6 w-6'
+                    className='flex-shrink-0 w-6 h-6 stroke-current'
                     fill='none'
                     viewBox='0 0 24 24'
                   >
@@ -154,10 +154,9 @@ const Login = ({ setToken }) => {
                 </button>
                 <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
                   Need to create an account?
-                  <a href='/register' className='text-gray-700 underline mx-1'>
+                  <a href='/register' className='mx-1 text-gray-700 underline'>
                     Create Account
                   </a>
-                  .
                 </p>
               </div>
             </form>

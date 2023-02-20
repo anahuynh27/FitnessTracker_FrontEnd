@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../api/api';
 
-const Register = ({ setToken}) => {
+const Register = ({ setToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -15,27 +15,20 @@ const Register = ({ setToken}) => {
 
     try {
       const register = await fetchRegister(username, password);
-      console.log({register});
-
       if (register.error) {
         setMessage(register.message);
         return;
       }
-
       if (register) {
         setMessage(register.message);
       }
-
       setToken(register.token);
       localStorage.setItem('token', register.token);
       history('/activities');
     } catch (error) {
-      console.error('Error Registering, please try again', error);
+      console.error(error);
     }
-
-    console.log({message});
   };
-
   return (
     <section className='bg-white'>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
@@ -45,7 +38,6 @@ const Register = ({ setToken}) => {
             src='https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
             className='absolute inset-0 object-cover w-full h-full opacity-80'
           />
-
           <div className='hidden lg:relative lg:block lg:p-12'>
             <a className='block text-white' href='/'>
               <span className='sr-only'>Home</span>
@@ -61,18 +53,15 @@ const Register = ({ setToken}) => {
                 />
               </svg>
             </a>
-
             <h2 className='mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl'>
               Welcome to fitness trackr
             </h2>
-
             <p className='mt-4 leading-relaxed text-white/90'>
               Take the first step into a healthier lifestyle by creating an
               account. Are you ready to begin your fitness journey?
             </p>
           </div>
         </section>
-
         <main
           aria-label='Main'
           className='flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6'
@@ -96,22 +85,20 @@ const Register = ({ setToken}) => {
                   />
                 </svg>
               </a>
-
               <h1 className='mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl'>
                 Welcome to fitness trackr
               </h1>
-
               <p className='mt-4 leading-relaxed text-gray-500'>
                 Take the first step of achieving your fitness goals. Ready to
                 begin your fitness journey?
               </p>
             </div>
             {message && (
-              <div className='alert alert-error shadow-lg'>
+              <div className='shadow-lg alert alert-error'>
                 <div>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='stroke-current flex-shrink-0 h-6 w-6'
+                    className='flex-shrink-0 w-6 h-6 stroke-current'
                     fill='none'
                     viewBox='0 0 24 24'
                   >
@@ -125,9 +112,7 @@ const Register = ({ setToken}) => {
                   <span>{message}</span>
                 </div>
               </div>
-            ) }
-
-
+            )}
             <form
               action='#'
               className='grid grid-cols-6 gap-6 mt-8'
@@ -140,7 +125,6 @@ const Register = ({ setToken}) => {
                 >
                   Create Username:
                 </label>
-
                 <input
                   type='text'
                   name='username'
@@ -150,7 +134,6 @@ const Register = ({ setToken}) => {
                   className='w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm'
                 />
               </div>
-
               <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='password'
@@ -158,7 +141,6 @@ const Register = ({ setToken}) => {
                 >
                   Create Password
                 </label>
-
                 <input
                   type='password'
                   name='password'
@@ -168,7 +150,6 @@ const Register = ({ setToken}) => {
                   className='w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm'
                 />
               </div>
-
               <div className='col-span-6 sm:flex sm:items-center sm:gap-4'>
                 <button
                   type='submit'
@@ -176,13 +157,11 @@ const Register = ({ setToken}) => {
                 >
                   Create an account
                 </button>
-
                 <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
                   Already have an account?
-                  <a href='/login' className='text-gray-700 underline mx-1'>
+                  <a href='/login' className='mx-1 text-gray-700 underline'>
                     Log in
                   </a>
-                  .
                 </p>
               </div>
             </form>

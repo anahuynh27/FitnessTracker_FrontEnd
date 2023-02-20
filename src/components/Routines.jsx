@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchAllPublicRoutines } from '../api/api';
 
 const Routines = ({
@@ -12,10 +12,6 @@ const Routines = ({
   const [routines, setRoutines] = useState([]);
   const [search, setSearch] = useState([]);
   const history = useNavigate();
-  let { creatorName } = useParams();
-  let { activityName } = useParams();
-  console.log(selectedActivity);
-  console.log(activityName);
 
   useEffect(() => {
     allRoutines();
@@ -28,30 +24,24 @@ const Routines = ({
   const allRoutines = async () => {
     try {
       const routines = await fetchAllPublicRoutines();
-      console.log({ routines });
       setRoutines(routines);
     } catch (error) {
-      console.error('error all Routines function', error);
+      console.error(error);
     }
   };
 
   const handleClick = (creatorName) => {
-    console.log(creatorName);
     setSelectedUser(creatorName);
     history(`/${creatorName}/routines`);
   };
 
   const handleActivityClick = (activityId, activityName) => {
-    console.log({ activityName, activityId });
     setSelectedActivity(activityName);
     setSelectedActivityId(activityId);
     history(`/${activityName}/activities`);
   };
 
   return (
-    // ability to search
-    // click on activity stretch goal
-    // add a back button or view all button when clicking on a single user/activity
     <div>
       {
         <form
@@ -59,7 +49,7 @@ const Routines = ({
           onSubmit={(event) => event.preventDefault()}
         >
           <input
-            className='input input-bordered input-secondary w-full max-w-xs'
+            className='w-full max-w-xs input input-bordered input-secondary'
             value={search}
             placeholder='search'
             onChange={(event) => {
@@ -68,7 +58,6 @@ const Routines = ({
           />
         </form>
       }
-
       <div className='overflow-x-auto'>
         <table className='min-w-full font-serif text-sm divide-y-2 divide-gray-200'>
           <thead>
@@ -96,7 +85,6 @@ const Routines = ({
               </th>
             </tr>
           </thead>
-
           <tbody className='divide-y divide-gray-200'>
             {routines
               .filter((r) => {
@@ -146,12 +134,7 @@ const Routines = ({
                     <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                       {r.goal}
                     </td>
-
                     <td>
-                      {/* <button
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative"
-                    onClick={() => handleActivityClick(activityName)}
-                  > */}
                       {r.activities.map((ra) => {
                         return (
                           <button
@@ -163,9 +146,7 @@ const Routines = ({
                           </button>
                         );
                       })}
-                      {/* </button> */}
                     </td>
-
                     <td className='px-4 py-2 text-gray-700 whitespace-nowrap'>
                       {r.activities.map((ra) => {
                         return <span key={ra.id}>{ra.description}</span>;
