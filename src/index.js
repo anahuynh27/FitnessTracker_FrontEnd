@@ -26,7 +26,6 @@ const App = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedActivity, setSelectedActivity] = useState('');
   const [selectedActivityId, setSelectedActivityId] = useState('');
-  const isLoggedIn = token !== '';
 
   const history = useNavigate();
   const me = async () => {
@@ -52,7 +51,6 @@ const App = () => {
       <header className='p-4 bg-white'>
         <Navbar username={username} token={token} logout={logout} />
       </header>
-      {/* body  */}
       <div className='flex flex-row flex-1'>
         <main className='flex-1 p-4'>
           <Routes>
@@ -116,7 +114,6 @@ const App = () => {
           </Routes>
         </main>
       </div>
-      {/* footer */}
       <footer className='p-4 text-center bg-white'>
         <div>
           <span className='font-serif'>fitness trackr 2023</span>

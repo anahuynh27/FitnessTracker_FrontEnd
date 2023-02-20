@@ -35,9 +35,10 @@ const Activities = ({ token }) => {
       } else {
         setMessage(`Activity ${addActivity.name} added successfully`);
       }
-
       allActivities();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -67,7 +68,6 @@ const Activities = ({ token }) => {
               onChange={(event) => setDescription(event.target.value)}
               required
             />
-
             <button className='btn btn-secondary btn-sm' type='submit'>
               Submit Activity
             </button>
@@ -89,7 +89,6 @@ const Activities = ({ token }) => {
               </th>
             </tr>
           </thead>
-
           <tbody className='divide-y divide-gray-200'>
             {activities.map((a) => {
               return (

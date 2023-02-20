@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { fetchUpdateRoutine, fetchUpdateRA, fetchDeleteRA } from '../api/api';
-import ActivityList from './ActivityList';
+import { fetchUpdateRoutine, fetchUpdateRA } from '../api/api';
 
 const EditRoutine = ({ routineEdit, token }) => {
   const [name, setName] = useState(routineEdit.name);
   const [goal, setGoal] = useState(routineEdit.goal);
-  const [activity, setActivity] = useState();
   const [count, setCount] = useState(routineEdit.activities[0].count);
   const [duration, setDuration] = useState(routineEdit.activities[0].duration);
-  const [activityId, setActivityId] = useState('');
-  const [routineId, setRoutineId] = useState('');
-  const [routineActivityId, setRoutineActivityId] = useState(routineEdit.activities[0].routineActivityId);
+  // const [routineActivityId, setRoutineActivityId] = useState(routineEdit.activities[0].routineActivityId);
   const [isPublic, setIsPublic] = useState(true);
-  console.log({ token, routineEdit });
-  console.log({ routineActivityId, count, duration });
-  
+
+  const routineActivityId = routineEdit.activities[0].routineActivityId;
 
   const history = useNavigate();
 

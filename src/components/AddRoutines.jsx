@@ -65,7 +65,6 @@ const AddRoutines = ({ token, setActivity }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-
             <label className='label'>
               <span className='label-text'>Goal</span>
             </label>
@@ -92,7 +91,6 @@ const AddRoutines = ({ token, setActivity }) => {
                 className='w-full max-w-xs'
               />
             </div>
-
             <label className='label'>
               <span className='label-text'>Count</span>
             </label>
@@ -113,9 +111,8 @@ const AddRoutines = ({ token, setActivity }) => {
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             />
-
             <div>
-              <button type='submit' className='m-6 btn'>
+              <button type='submit' className='m-6 btn' disabled={!activityId}>
                 submit
               </button>
               <Link to='/myroutines'>

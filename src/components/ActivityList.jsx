@@ -26,6 +26,7 @@ const ActivityList = ({ setActivity, setActivityId }) => {
       <select
         onChange={handleChange}
         className='w-full max-w-xs select select-info'
+        required
       >
         <option value='select activity'>select activity</option>
         {activities.map((a) => (
@@ -34,6 +35,7 @@ const ActivityList = ({ setActivity, setActivityId }) => {
           </option>
         ))}
       </select>
+      {!setActivityId && <span>Please choose an activity</span>}
     </div>
   );
 };
