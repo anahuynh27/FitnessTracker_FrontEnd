@@ -7,6 +7,7 @@ const Routines = ({
   setSelectedUser,
   selectedActivity,
   setSelectedActivity,
+  setSelectedActivityId,
 }) => {
   const [routines, setRoutines] = useState([]);
   const [search, setSearch] = useState([]);
@@ -40,9 +41,10 @@ const Routines = ({
     history(`/${creatorName}/routines`);
   };
 
-  const handleActivityClick = (activityName) => {
-    console.log(activityName);
+  const handleActivityClick = (activityId, activityName) => {
+    console.log({ activityName, activityId });
     setSelectedActivity(activityName);
+    setSelectedActivityId(activityId);
     history(`/${activityName}/activities`);
   };
 
@@ -154,7 +156,7 @@ const Routines = ({
                         return (
                           <button
                             className='inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-900 rounded-md whitespace-nowrap hover:text-pink-500 focus:relative'
-                            onClick={() => handleActivityClick(ra.id)}
+                            onClick={() => handleActivityClick(ra.id, ra.name)}
                             key={ra.id}
                           >
                             {ra.name}

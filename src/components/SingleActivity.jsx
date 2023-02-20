@@ -4,7 +4,7 @@ import {
   fetchAllPublicRoutines,
 } from '../api/api';
 
-const SingleActivity = ({ selectedActivity }) => {
+const SingleActivity = ({ selectedActivity, selectedActivityId }) => {
   // const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   console.log({ selectedActivity });
@@ -13,7 +13,7 @@ const SingleActivity = ({ selectedActivity }) => {
   useEffect(() => {
     // allRoutines();
     singleActivity();
-  }, [selectedActivity]);
+  }, [selectedActivity, selectedActivityId]);
 
   // const allRoutines = async () => {
   //   try {
@@ -27,7 +27,7 @@ const SingleActivity = ({ selectedActivity }) => {
 
   const singleActivity = async () => {
     try {
-      const activity = await fetchGetRoutinesByActivityId(selectedActivity);
+      const activity = await fetchGetRoutinesByActivityId(selectedActivityId);
       console.log({ activities });
       setActivities(activity);
     } catch (error) {
@@ -93,7 +93,7 @@ const SingleActivity = ({ selectedActivity }) => {
                 <tr key={a.id}>
                   <td>
                     {a.activities.map((aa) => {
-                      return <span key={aa.key}>{aa.name}</span>;
+                      return <span key={aa.id}>{aa.name}</span>;
                     })}
                   </td>
                   <td className='px-4 py-2 font-medium text-gray-900 whitespace-nowrap'>
