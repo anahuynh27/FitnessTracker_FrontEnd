@@ -19,13 +19,11 @@ const AddRoutines = ({ token, setActivity }) => {
     setName('');
     setGoal('');
     const routine = await fetchAddRoutine(token, isPublic, name, goal);
-    console.log({ routine });
     const rId = routine.id;
     setRoutineId(rId);
   };
 
   useEffect(() => {
-    console.log({ routineId, activityId });
     if (routineId && activityId) {
       setCount(count);
       setDuration(duration);
@@ -34,16 +32,13 @@ const AddRoutines = ({ token, setActivity }) => {
   }, [routineId, activityId]);
 
   const handleAttach = async () => {
-    console.log({ routineId, activityId, count, duration });
     if (count !== '' && duration !== '') {
-      const attachActivity = await fetchAddActivitiesByRoutineId(
+      await fetchAddActivitiesByRoutineId(
         routineId,
         activityId,
         count,
         duration
       );
-      console.log({ attachActivity });
-      console.log({ routineId, activityId, count, duration });
       setCount('');
       setDuration('');
       history('/myroutines');

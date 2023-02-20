@@ -16,7 +16,6 @@ const Activities = ({ token }) => {
   const allActivities = async () => {
     try {
       const activities = await fetchAllActivities();
-      console.log({ activities });
       setActivities(activities);
     } catch (error) {
       console.error('error all activities fn', error);
@@ -27,7 +26,6 @@ const Activities = ({ token }) => {
     event.preventDefault();
     setName('');
     setDescription('');
-
     try {
       const addActivity = await fetchAddActivity(name, description, token);
       if (addActivity.error) {
