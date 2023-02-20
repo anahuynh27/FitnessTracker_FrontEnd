@@ -1,4 +1,4 @@
-# FitnessTracker_FrontEnd
+# FitnessTracker_FrontEnd 😎
 
 frontend netlify site: https://fitnesstrakr-fsa-vp-at.netlify.app/
 
