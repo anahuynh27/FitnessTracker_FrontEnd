@@ -1,5 +1,7 @@
 # FitnessTracker_FrontEnd
 
+frontend netlify site: https://fitnesstrakr-fsa-vp-at.netlify.app/
+
 render static site: https://fitness-trackr-uyp6.onrender.com
 
 github backend repo: https://github.com/vincentpalomo/UNIV_FitnessTrackr_Starter
