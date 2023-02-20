@@ -45,6 +45,16 @@ const Activities = ({ token }) => {
       {token && (
         <form onSubmit={handleSubmit} className='px-24'>
           <div className='flex items-center justify-center space-x-5'>
+            <form onSubmit={(event) => event.preventDefault()}>
+              <input
+                className='w-full max-w-xs input input-bordered input-secondary'
+                value={search}
+                placeholder='search'
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                }}
+              />
+            </form>
             <label className='text-xs font-medium text-gray-700 '>
               Activity:
             </label>
@@ -71,19 +81,6 @@ const Activities = ({ token }) => {
               Submit Activity
             </button>
           </div>
-          <form
-            className='flex justify-center px-5 my-3'
-            onSubmit={(event) => event.preventDefault()}
-          >
-            <input
-              className='w-full max-w-xs input input-bordered input-secondary'
-              value={search}
-              placeholder='search'
-              onChange={(event) => {
-                setSearch(event.target.value);
-              }}
-            />
-          </form>
           <span className='flex items-center justify-center text-pink-500'>
             {message}
           </span>
